@@ -7,6 +7,7 @@ use App\Http\Controllers\frontend\UserDashboardController;
 use App\Http\Controllers\frontend\UserProfileController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuizController;
 
 // Public Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -36,5 +37,9 @@ Route::post('admin/login', [AdminController::class, 'login']);
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile');
+
+     // Quiz Routes
+     Route::get('quiz', [QuizController::class, 'index'])->name('quiz.index');
+     Route::post('quiz/submit', [QuizController::class, 'checkAnswers'])->name('quiz.checkAnswers');
 });
 

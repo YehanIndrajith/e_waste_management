@@ -1,0 +1,65 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Quiz;
+
+class QuizController extends Controller
+{
+    public function index()
+    {
+        $quizzes = Quiz::all();
+        return view('frontend.quiz.index', compact('quizzes'));
+    }
+
+    public function checkAnswers(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'answers' => 'required|array', // Ensure 'answers' is provided and is an array
+            'answers.*' => 'in:A,B,C,D',  // Ensure each answer is one of the allowed options
+        ]);
+
+        $totalQuestions = Quiz::count();
+        $correctAnswers = 0;
+        $results = [];
+
+        foreach ($request->answers as $questionId => $answer) {
+            $quiz = Quiz::find($questionId);
+
+            // Ensure the question exists and handle missing data gracefully
+            if (!$quiz) {
+                continue;
+            }
+
+            $isCorrect = $quiz->correct_option === $answer;
+            $results[] = [
+                'question' => $quiz->question,
+                'user_answer' => $answer,
+                'correct_answer' => $quiz->correct_option,
+                'is_correct' => $isCorrect,
+                'option_a' => $quiz->option_a,
+                'option_b' => $quiz->option_b,
+                'option_c' => $quiz->option_c,
+                'option_d' => $quiz->option_d,
+            ];
+
+            if ($isCorrect) {
+                $correctAnswers++;
+            }
+        }
+
+        // Determine Knowledge Level
+        $level = '';
+        if ($correctAnswers <= 4) {
+            $level = 'Beginner';
+        } elseif ($correctAnswers <= 7) {
+            $level = 'Intermediate';
+        } else {
+            $level = 'Pro';
+        }
+
+        return view('frontend.quiz.result', compact('correctAnswers', 'totalQuestions', 'level', 'results'));
+    }
+}
