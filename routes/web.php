@@ -8,6 +8,7 @@ use App\Http\Controllers\frontend\UserProfileController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\CollectionPointController;
 
 // Public Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -41,5 +42,15 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
      // Quiz Routes
      Route::get('quiz', [QuizController::class, 'index'])->name('quiz.index');
      Route::post('quiz/submit', [QuizController::class, 'checkAnswers'])->name('quiz.checkAnswers');
+
+      // Collection Point Routes
+    Route::get('collection-points', [CollectionPointController::class, 'index'])->name('collectionPoints.index');
+   // Route::post('collection-points/nearest', [CollectionPointController::class, 'findNearest'])->name('collectionPoints.nearest');
+   Route::match(['get', 'post'], 'collection-points/nearest', [CollectionPointController::class, 'findNearest'])->name('collectionPoints.nearest');
+ //  Route::post('collection-points/nearest', [CollectionPointController::class, 'findNearest'])->name('collectionPoints.nearest');
 });
+
+//Route::match(['get', 'post'], 'user/collection-points/nearest', [CollectionPointController::class, 'findNearest'])->name('user.collectionPoints.nearest');
+
+
 
