@@ -8,8 +8,6 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class SubCategoryDataTable extends DataTable
@@ -22,17 +20,18 @@ class SubCategoryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function($query){
-             
-                $editBtn = "<a href='".route('admin.sub-category.edit', $query->id)."' class='btn btn-primary'>edit</a>";
-                $deleteBtn = "<a href='".route('admin.sub-category.destroy', $query->id)."' class='btn btn-danger ml-2 delete-item'>delete</a>";
-    
-                return $editBtn.$deleteBtn;
+            ->addColumn('category', function ($query) {
+                return $query->category->name ?? 'No Category';
             })
-            ->addColumn('category', function($query){
-                    return $query->category->name;
+            ->addColumn('action', function ($query) {
+                $editBtn = "<a href='" . route('admin.sub-category.edit', $query->id) . "' class='btn btn-primary'>Edit</a>";
+                $deleteBtn = "
+                <form action='" . route('admin.sub-category.destroy', $query->id) . "' method='POST' style='display:inline;' onsubmit='return confirm(\"Are you sure?\")'>
+                    " . csrf_field() . method_field('DELETE') . "
+                    <button type='submit' class='btn btn-danger ml-2'>Delete</button>
+                </form>";
+                return $editBtn . $deleteBtn;
             })
-
             ->rawColumns(['action'])
             ->setRowId('id');
     }
@@ -42,7 +41,7 @@ class SubCategoryDataTable extends DataTable
      */
     public function query(SubCategory $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->with('category');
     }
 
     /**
@@ -51,20 +50,19 @@ class SubCategoryDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('subcategory-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('subcategory-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload'),
+            ]);
     }
 
     /**
@@ -73,17 +71,19 @@ class SubCategoryDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-           
             Column::make('id'),
             Column::make('name'),
             Column::make('slug'),
-            Column::make('category'),
+            Column::computed('category')
+                ->exportable(true)
+                ->printable(true)
+                ->addClass('text-center'),
             Column::make('status'),
             Column::computed('action')
-            ->exportable(false)
-            ->printable(false)
-            ->width(160)
-            ->addClass('text-center'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(160)
+                ->addClass('text-center'),
         ];
     }
 

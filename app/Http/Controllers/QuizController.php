@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Quiz;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Quiz1Result;
+
 
 class QuizController extends Controller
 {
@@ -59,6 +62,13 @@ class QuizController extends Controller
         } else {
             $level = 'Pro';
         }
+
+         // Store results in the database
+    Quiz1Result::create([
+        'username' => Auth::user()->username, // Store the username
+        'level' => $level,
+        'marks' => $correctAnswers,
+    ]);
 
         return view('frontend.quiz.result', compact('correctAnswers', 'totalQuestions', 'level', 'results'));
     }
