@@ -37,7 +37,15 @@
           </ul>
         </li>
 
-        {{-- <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li> --}}
+        {{-- Manage Products --}}
+        <li class="dropdown {{ setActive([
+          'admin.slider.*'   
+        ])}}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Products</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{setActive(['admin.products.*'])}}"><a class="nav-link" href="{{route('admin.products.index')}}">Products</a></li>
+          </ul>
+        </li>
         
       </ul>
 

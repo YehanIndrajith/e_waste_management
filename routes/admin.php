@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -32,3 +33,9 @@ Route::resource('sub-category', SubCategoryController::class);
 //Child Category Route
 Route::get('get-subcategories', [ChildCategoryController::class, 'getSubCategories'])->name('get-subcategories');
 Route::resource('child-category', ChildCategoryController::class);
+
+//Product Routes
+Route::get('product/get-subcategories', [ProductController::class, 'getSubCategories'])->name('product.get-subcategories');
+Route::get('product/get-child-categories', [ProductController::class, 'getChildCategories'])->name('product.get-child-categories');
+Route::post('/admin/product/calculate-eco-rating', [ProductController::class, 'calculateEcoRating'])->name('product.calculate-eco-rating');
+Route::resource('products', ProductController::class);
