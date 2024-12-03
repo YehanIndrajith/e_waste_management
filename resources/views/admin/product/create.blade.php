@@ -98,15 +98,6 @@
                                 @enderror
                             </div>
 
-                             <!-- Product Price field -->
-                             <div class="form-group">
-                                <label>Price</label>
-                                <input type="text" class="form-control" name="price" value="{{ old('price') }}">
-                                @error('sku')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-
                               <!-- Product Stock quantity field -->
                               <div class="form-group">
                                 <label>Stock Quantity</label>
@@ -143,61 +134,36 @@
                                     @enderror
                                    </div>
 
-                           <div class="row">
+                          
 
-                            <div class="col-md-4">
-                                 <!-- Is Top dropdown -->
+                            
+                                 <!-- Product Type -->
                              <div class="form-group">
-                                <label>Is Top</label>
-                                <select class="form-control" name="is_top">
+                                <label>Product Type</label>
+                                <select class="form-control" name="product_type">
                                     <option value="">Select</option>
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="type_selling">Selling</option>
+                                    <option value="type_dontion">Donation</option>
                                 </select>
-                                @error('status')
+                                @error('product_type')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                              </div>
+                           
+                             <!-- Product Price field -->
+                             <div class="form-group">
+                                <label>Price</label>
+                                <input type="text" class="form-control" name="price" value="{{ old('price') }}">
+                                @error('price')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-                            </div>
-                            
-                            <div class="col-md-4">
-                                  <!-- Is Best dropdown -->
-                              <div class="form-group">
-                                <label>Is Best</label>
-                                <select class="form-control" name="is_best">
-                                    <option value="">Select</option>
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select>
-                                @error('status')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                            </div>
-                            
-                            <div class="col-md-4">
-                                 <!-- Is Featured dropdown -->
-                              <div class="form-group">
-                                <label>Is Featured</label>
-                                <select class="form-control" name="is_featured">
-                                    <option value="">Select</option>
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select>
-                                @error('status')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                            </div>
-                             
-
-                           </div>
 
                             <!-- Eco Rating Section -->
                             <div class="form-group">
                                 <label>Eco Rating</label>
                                 <div class="input-group">
-                                    <textarea id="eco-rating" class="form-control" readonly></textarea>
+                                    <textarea id="eco-rating" name="eco_rating" class="form-control" readonly></textarea>
                                     <div class="input-group-append">
                                         <!-- Button to open modal -->
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ecoRatingModal">Get Your Eco Rating</button>
@@ -467,5 +433,22 @@
             });
         });
     });
+
+    $(document).ready(function () {
+    // Handle changes to the product type dropdown
+    $('select[name="product_type"]').on('change', function () {
+        const productType = $(this).val(); // Get the selected value
+        const priceField = $('input[name="price"]'); // Select the price field
+
+        if (productType === 'type_dontion') {
+            // Set the price field to read-only and set the value to 0
+            priceField.val(0).prop('readonly', true);
+        } else {
+            // Make the price field editable and clear its value
+            priceField.prop('readonly', false).val('');
+        }
+    });
+});
+
 </script>
 @endpush

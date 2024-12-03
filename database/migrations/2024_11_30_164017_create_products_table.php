@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('thumb_image');
             $table->integer('vendor_id');
             $table->integer('category_id');
-            $table->integer('sub_category_id')->default(0);
-            $table->integer('child_category_id')->default(0);
+            $table->integer('sub_category_id')->nullable();
+            $table->integer('child_category_id')->nullable();
             $table->integer('brand_id')->nullable();
             $table->integer('qty');
             $table->text('short_description');
@@ -28,9 +28,7 @@ return new class extends Migration
             $table->string('sku')->nullable();
             $table->double('price');
             $table->string('eco_rating');
-            $table->boolean('is_top')->nullable();
-            $table->boolean('is_best')->nullable(); 
-            $table->boolean('is_featured')->nullable();
+            $table->string('product_type')->nullable();
             $table->integer('is_approved')->default(0);
             $table->boolean('status');
 
