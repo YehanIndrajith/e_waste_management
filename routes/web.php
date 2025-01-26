@@ -9,6 +9,11 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\CollectionPointController;
+use App\Http\Controllers\BeginnerQuizController; 
+use App\Http\Controllers\ImageMatchingController;
+use App\Http\Controllers\IntermediateImageMatchingQuizController;
+use App\Http\Controllers\IntermediateQuizController;
+use App\Models\IntermediateQuiz;
 
 // Public Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -39,9 +44,45 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     Route::get('dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile');
 
-     // Quiz Routes
-     Route::get('quiz', [QuizController::class, 'index'])->name('quiz.index');
-     Route::post('quiz/submit', [QuizController::class, 'checkAnswers'])->name('quiz.checkAnswers');
+
+    Route::prefix('activities')->name('activities.')->group(function () {
+        Route::prefix('beginner')->name('beginner.')->group(function () {
+            // Quiz Routes
+            Route::get('quiz', [BeginnerQuizController::class, 'index'])->name('quiz.index');
+            Route::post('quiz/submit', [BeginnerQuizController::class, 'checkAnswers'])->name('quiz.checkAnswers');
+
+            // Image Matching Routes
+            Route::get('image-matching', [ImageMatchingController::class, 'showImageMatchingForm'])->name('image-matching');
+            Route::post('image-matching/checkAnswers', [ImageMatchingController::class, 'checkAnswers'])->name('image-matching.checkAnswers');
+
+        });
+    });
+    
+  
+    
+         // Quiz Routes
+         Route::get('quiz', [QuizController::class, 'index'])->name('quiz.index');
+         Route::post('quiz/submit', [QuizController::class, 'checkAnswers'])->name('quiz.checkAnswers');
+    
+         // Beginner Level Activities (Quiz)
+         Route::prefix('activities')->name('activities.')->group(function () {
+          Route::prefix('beginner')->name('beginner.')->group(function () {
+              Route::get('quiz', [BeginnerQuizController::class, 'index'])->name('quiz');
+              Route::post('quiz/submit', [BeginnerQuizController::class, 'checkAnswers'])->name('quiz.checkAnswers');
+          });
+      });
+    
+     // Intermediate Level Activities (Quiz)
+     Route::prefix('activities')->name('activities.')->group(function () {
+        Route::prefix('intermediate')->name('intermediate.')->group(function () {
+            Route::get('quiz', [IntermediateQuizController::class, 'index'])->name('quiz');
+            Route::post('quiz/submit', [IntermediateQuizController::class, 'checkAnswers'])->name('quiz.checkAnswers');
+
+            // Image Matching Routes
+            Route::get('image-matching', [IntermediateImageMatchingQuizController::class, 'showImageMatchingForm'])->name('image-matching');
+        });
+    });
+
 
       // Collection Point Routes
     Route::get('collection-points', [CollectionPointController::class, 'index'])->name('collectionPoints.index');

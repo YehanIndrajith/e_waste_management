@@ -1,7 +1,23 @@
-@extends('admin.layouts.master')
+@extends('vendor.layouts.master')
 
 @section('content')
 
+  <!--=============================
+    DASHBOARD START
+  ==============================-->
+  <section id="wsus__dashboard">
+    <div class="container-fluid">
+     @include('vendor.layouts.sidebar')
+
+      <div class="row">
+        <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
+          <div class="dashboard_content mt-2 mt-md-0">
+            <h3><i class="far fa-user"></i>Products</h3>
+            <a href="{{route('vendor.products.create')}}" class="btn btn-primary mb-3"> + Add New Product</a>
+            <div class="wsus__dashboard_profile">
+              <div class="wsus__dash_pro_area">
+           
+              
 <section class="section">
     <div class="section-header">
         <h1>Product</h1>
@@ -193,7 +209,7 @@
     </div>
 </section>
 
-<!-- Eco Rating Modal -->
+                <!-- Eco Rating Modal -->
 <div class="modal fade" id="ecoRatingModal" tabindex="-1" role="dialog" aria-labelledby="ecoRatingModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -328,10 +344,20 @@
         </div>
     </div>
 </div>
-
-
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--=============================
+    DASHBOARD START
+  ==============================-->
 
 @endsection
+
 @push('scripts')
 <script>
     $(document).ready(function () {
