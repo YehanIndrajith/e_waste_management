@@ -1,22 +1,62 @@
-<div class="dashboard_sidebar">
-    <span class="close_icon">
-      <i class="far fa-bars dash_bar"></i>
-      <i class="far fa-times dash_close"></i>
-    </span>
-    <a href="dsahboard.html" class="dash_logo"><img src="images/logo.png" alt="logo" class="img-fluid"></a>
-    <ul class="dashboard_link">
+<div class="main-sidebar sidebar-style-2">
+    <aside id="sidebar-wrapper">
+      <div class="sidebar-brand">
+        <a href="index.html">ECO-GREEN</a>
+      </div>
+      <div class="sidebar-brand sidebar-brand-sm">
+        <a href="index.html">St</a>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="menu-header">Dashboard</li>
+        <li class="dropdown active">
+          <a href="{{route('vendor.products.index')}}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+         
+        </li>
+        <li class="menu-header">Starter</li>
       
-      <li><a href="dsahboard_review.html"><i class="far fa-star"></i> Dashboard</a></li>
-      <li><a href="{{route('vendor.shop-profile.index')}}"><i class="far fa-user"></i> Shop Profile</a></li>
-      <li><a href="{{route('vendor.products.index')}}"><i class="far fa-user"></i> Products</a></li>
-      <li><a href="{{route('vendor.profile')}}"><i class="far fa-user"></i> My Profile</a></li>
-      <li>
-        <form method="POST" action="{{ route('logout') }}">
-          @csrf
-          <a href="{{route('logout')}}" onclick="event.preventDefault();
-                              this.closest('form').submit();">><i class="far fa-sign-out-alt"></i> Log out</a>
-        </form>
-      </li>
-      
-    </ul>
+        <li class="dropdown {{ setActive([
+          'admin.category.*',
+          'admin.sub-category.*',
+          'admin.child-category.*'
+        ])}}">
+          {{-- <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Categories</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{setActive(['admin.category.*'])}}"><a class="nav-link" href="{{route('admin.category.index')}}">Category</a></li>
+            <li class="{{setActive(['admin.sub-category.*'])}}"><a class="nav-link" href="{{route('admin.sub-category.index')}}">Sub Category</a></li>
+            <li class="{{setActive(['admin.child-category.*'])}}"><a class="nav-link" href="{{route('admin.child-category.index')}}">Child Category</a></li>
+           
+          </ul> --}}
+        </li>
+
+        <li class="dropdown {{ setActive([
+          'admin.vendor-profile.*'   
+        ])}}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Vendor</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{setActive(['vendor.vendor-profile.*'])}}"><a class="nav-link" href="{{route('vendor.shop-profile.index')}}">Vendor Profile</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown {{ setActive([
+          'admin.slider.*'   
+        ])}}">
+          {{-- <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Website</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{setActive(['admin.slider.*'])}}"><a class="nav-link" href="{{route('admin.slider.index')}}">Slider</a></li>
+          </ul> --}}
+        </li>
+
+        {{-- Manage Products --}}
+        <li class="dropdown {{ setActive([
+          'admin.slider.*'   
+        ])}}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Products</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{setActive(['admin.products.*'])}}"><a class="nav-link" href="{{route('vendor.products.index')}}">Products</a></li>
+          </ul>
+        </li>
+        
+      </ul>
+
+            </aside>
   </div>

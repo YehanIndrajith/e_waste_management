@@ -18,7 +18,17 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 Route::resource('shop-profile', VendorShopProfileController::class);
 
 
+
+//Child Category Route
+Route::get('get-subcategories', [VendorProductController::class, 'getSubCategories'])->name('get-subcategories');
+Route::resource('child-category', VendorProductController::class);
+
+Route::resource('sub-category', VendorProductController::class);
+
 //vendor products Route
+Route::get('product/get-subcategories', [VendorProductController::class, 'getSubCategories'])->name('product.get-subcategories');
+Route::get('product/get-child-categories', [VendorProductController::class, 'getChildCategories'])->name('product.get-child-categories');
+Route::post('/vendor/product/calculate-eco-rating', [VendorProductController::class, 'calculateEcoRating'])->name('product.calculate-eco-rating');
 Route::resource('products', VendorProductController::class);
 
 });

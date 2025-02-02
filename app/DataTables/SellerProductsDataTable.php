@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Product;
+use App\Models\SellerProduct;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
@@ -13,7 +14,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class VendorProductDataTable extends DataTable
+class SellerProductsDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -72,7 +73,9 @@ class VendorProductDataTable extends DataTable
                     return '<i class="badge badge-warning">Deactive</i>';
                 }
             })
-            
+            ->addColumn('vendor',function($query){
+                return
+            })
             ->rawColumns(['image','type','action','approved','Status'])
             ->setRowId('id');
     }
@@ -82,7 +85,7 @@ class VendorProductDataTable extends DataTable
      */
     public function query(Product $model): QueryBuilder
     {
-        return $model->where('vendor_id',Auth::user()->vendor->id)->newQuery();
+        return $model->where('vendor_id','!=', Auth::user()->vendor->id)->newQuery();
     }
 
     /**
@@ -91,7 +94,7 @@ class VendorProductDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('vendorproduct-table')
+                    ->setTableId('sellerproducts-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -135,6 +138,6 @@ class VendorProductDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'VendorProduct_' . date('YmdHis');
+        return 'SellerProducts_' . date('YmdHis');
     }
 }

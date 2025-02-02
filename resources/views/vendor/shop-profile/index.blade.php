@@ -12,14 +12,15 @@
       <div class="row">
         <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
           <div class="dashboard_content mt-2 mt-md-0">
-            <h3><i class="far fa-user"></i>Shop profile</h3>
+            {{-- <h3><i class="far fa-user mt-1"></i>Shop profile</h3> --}}
+            <br>
             <div class="wsus__dashboard_profile">
               <div class="wsus__dash_pro_area">
                 <form action="{{route('vendor.shop-profile.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group mb-2">
-                        <label>Preview</label>
+                        <label class="mt-3">Preview</label>
                         <br>
                         <img width="200px" src="{{asset($profile->banner)}}" alt="">
                     </div>

@@ -12,7 +12,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Create Product</h4>
+                        <h4>Update Product</h4>
                     </div>
                     <div class="card-body">
                         <!-- Display success message -->
@@ -23,8 +23,14 @@
                         @endif
 
                         <!-- Form to create a new product -->
-                        <form action="{{ route('vendor.products.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('vendor.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
+                            <div class="form-group">
+                                <label>Preview</label>
+                                <br>
+                                <img src="{{asset($product->thumb_image)}}" style="width:200px">
+                            </div>
 
                             <!-- Image upload field -->
                             <div class="form-group">
@@ -38,7 +44,7 @@
                             <!-- Product name field -->
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                <input type="text" class="form-control" name="name" value="{{$product->name}}">
                                 @error('name')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -52,7 +58,7 @@
                                         <select class="form-control" id="main-category" name="category_id">
                                             <option value="">Select</option>
                                             @foreach ($categories as $category)
-                                               <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                               <option  value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('category_id')
@@ -92,7 +98,7 @@
                             <!-- Product SKU field -->
                             <div class="form-group">
                                 <label>SKU</label>
-                                <input type="text" class="form-control" name="sku" value="{{ old('sku') }}">
+                                <input type="text" class="form-control" name="sku" value="{{$product->sku}}">
                                 @error('sku')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -101,7 +107,7 @@
                               <!-- Product Stock quantity field -->
                               <div class="form-group">
                                 <label>Stock Quantity</label>
-                                <input type="text" class="form-control" name="qty" value="{{ old('qty') }}">
+                                <input type="text" class="form-control" name="qty" value="{{$product->qty}}">
                                 @error('sku')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -110,7 +116,7 @@
                                <!-- Product Video Link field -->
                                <div class="form-group">
                                 <label>Video Link</label>
-                                <input type="text" class="form-control" name="video_link" value="{{ old('video_link') }}">
+                                <input type="text" class="form-control" name="video_link" value="{{$product->video_link}}">
                                 @error('sku')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -153,7 +159,7 @@
                              <!-- Product Price field -->
                              <div class="form-group">
                                 <label>Price</label>
-                                <input type="text" class="form-control" name="price" value="{{ old('price') }}">
+                                <input type="text" class="form-control" name="price" value="{{$product->price}}">
                                 @error('price')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -163,7 +169,11 @@
                             <div class="form-group">
                                 <label>Eco Rating</label>
                                 <div class="input-group">
-                                    <textarea id="eco-rating" name="eco_rating" class="form-control" readonly></textarea>
+                                    <textarea id="eco-rating" name="eco_rating" class="form-control" value="{{$product->eco_rating}}" readonly>
+                                        @error('eco_rating')
+                                        {{'get your eco rating'}}
+                                       @enderror
+                                    </textarea>
                                     <div class="input-group-append">
                                         <!-- Button to open modal -->
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ecoRatingModal">Get Your Eco Rating</button>
@@ -184,7 +194,7 @@
                             </div>
 
                             <!-- Submit button -->
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </form>
                     </div>
                 </div>
@@ -212,33 +222,10 @@
                         <label>What is your item?</label>
                         <select id="item" name="item" class="form-control">
                             <option value="">Select</option>
-                            <option value="Mobile_Phones">Mobile Phones</option>
+                            <option value="Mobile Phones">Mobile Phones</option>
                             <option value="Laptops">Laptops</option>
                             <option value="Smartwatches">Smartwatches</option>
-                            <option value="HeadphonesandEarbuds">Headphones and Earbuds</option>
-                            <option value="Portable_Chargers">Portable Chargers (Power Banks)</option>
                             <option value="Refrigerators">Refrigerators</option>
-                            <option value="Washing_Machines">Washing Machines</option>
-                            <option value="Microwaves">Microwaves</option>
-                            <option value="Toasters">Toasters</option>
-                            <option value="AirConditioners">Air Conditioners</option>
-                            <option value="Blenders">Blenders</option>
-                            <option value="VacuumCleaners">Vacuum Cleaners</option>
-                            <option value="RiceCookers">Rice Cookers</option>
-                            <option value="ElectricKettles">Electric Kettles</option>
-                            <option value="Televisions">Televisions</option>
-                            <option value="DVD">DVD/Blu-ray Players</option>
-                            <option value="Speakers">Speakers</option>
-                            <option value="Printers">Printers</option>
-                            <option value="Scanners">Scanners</option>
-                            <option value="Projectors">Projectors</option>
-                            <option value="FaxMachines">Fax Machines</option>
-                            <option value="Fans">Fans</option>
-                            <option value="HairDryers">Hair Dryers</option>
-                            <option value="ElectricShavers">Electric Shavers</option>
-                            <option value="Clocks">Clocks (Smart Clocks, Alarm Clocks)</option>
-                            <option value="DashCameras">Dash Cameras</option>
-                            <option value="CarAudioSystems">Car Audio Systems</option>
                         </select>
                     </div>
 
@@ -256,7 +243,6 @@
                     <div class="form-group">
                         <label>Have any parts been replaced?</label>
                         <select id="part-replacement" name="parts_replaced" class="form-control">
-                            <option value="">Select</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
@@ -296,7 +282,6 @@
                     <div class="form-group">
                         <label>Is the item fully functional without issues?</label>
                         <select id="functional-status" name="functional_status" class="form-control">
-                            <option value="">Select</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
