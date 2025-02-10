@@ -66,7 +66,7 @@ p {
   text-transform: capitalize;
   font-weight: 600;
   color: #fff;
-  background: #08C;
+  background: rgb(0, 204, 37);
   padding: 12px 25px;
   border: none;
   border-radius: 30px;
@@ -129,8 +129,8 @@ p {
 
 .shop_btn:hover {
   color: #fff;
-  background: #08C;
-  border-color: #08C;
+  background: rgb(107, 232, 12);
+  border-color: rgb(19, 119, 32);
 }
 
 .add_cart {
@@ -167,7 +167,7 @@ p {
 #wsus__topbar {
   width: 100%;
   height: 45px;
-  background: #08C;
+  background: rgb(40, 242, 14) !important;
 }
 
 .wsus__topbar_left {
@@ -418,7 +418,7 @@ header {
 }
 
 .wsus__call_text a:hover {
-  color: #007aff;
+  color: #00ff4c;
 }
 
 .wsus__icon_area {

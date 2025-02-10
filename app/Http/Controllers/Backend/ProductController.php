@@ -128,7 +128,7 @@ class ProductController extends Controller
         $product->thumb_image = empty(!$imagePath) ? $imagePath : $product->thumb_image;
         $product->name = $request->name;
         $product->slug = Str::slug($request->name);
-        $product->vendor_id = Auth::user()->vendor->id;
+        // $product->vendor_id = Auth::user()->vendor->id;
         $product->category_id = $request->category_id; // Corrected field name
         $product->sub_category_id = $request->sub_category_id ?? null;
         $product->child_category_id = $request->child_category_id ?? null;
@@ -142,7 +142,7 @@ class ProductController extends Controller
         $product->eco_rating = $request->eco_rating;
         $product->product_type = $request->product_type;
         $product->status = $request->status;
-        $product->is_approved = 1;
+        // $product->is_approved = 1;
         $product->save();
 
         return redirect()->route('admin.products.index')->with('success', 'Product Updated successfully!');

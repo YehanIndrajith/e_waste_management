@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class HomePageSetting extends Model
 {
     use HasFactory;
 
-    public function vendor(){
-      
-        return $this->belongsTo(Vendor::class);
-    }
+    protected $fillable = [
+        'key','value'
+    ];
 }

@@ -7,8 +7,10 @@ use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SellerProductController;
+use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\HomePageSettingController;
 use Illuminate\Support\Facades\Route;
 
 // In routes/admin.php
@@ -47,3 +49,13 @@ Route::resource('products', ProductController::class);
 
 //seller product routes
 Route::get('seller-products', [SellerProductController::class, 'index'])->name('seller-products.index');
+Route::get('seller-pending-products', [SellerProductController::class, 'pendingProducts'])->name('seller-pending-products.index');
+Route::put('change-approve-status', [SellerProductController::class, 'changeApproveStatus'])->name('change-approve-status');
+
+//Setting Routes
+Route::get('settings', [SettingController::class,'index'])->name('settings.index');
+Route::put('general-setting-update', [SettingController::class,'generalSettingUpdate'])->name('general-setting-update');
+
+//Home Page Setting Routes
+Route::get('home-page-setting', [HomePageSettingController::class,'index'])->name('home-page-setting');
+Route::put('selling-category-section', [HomePageSettingController::class,'updateSellingCategorySection'])->name('selling-category-section');

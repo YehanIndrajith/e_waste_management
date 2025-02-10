@@ -1,6 +1,7 @@
 <section id="wsus__hot_deals" class="wsus__hot_deals_2">
     <div class="container">
-        <div class="row">
+
+        {{-- <div class="row">
             <div class="col-xl-12">
                 <div class="wsus__section_header">
                     <h3>hot deals of the day</h3>
@@ -129,24 +130,24 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="wsus__hot_large_item">
             <div class="row">
                 <div class="col-xl-12">
                     <div class="wsus__section_header justify-content-start">
                         <div class="monthly_top_filter2 mb-1">
-                            <button class="ms-0 active" data-filter="*">music</button>
-                            <button data-filter=".clotha">clothing</button>
-                            <button data-filter=".eleca">Electronic</button>
-                            <button data-filter=".spka">Speakers</button>
-                            <button data-filter=".cama">Cameras</button>
-                            <button class="me-0" data-filter=".wata">Watches</button>
+                            <button class="active auto_click" data-filter=".type_selling">Selling</button>
+                            <button data-filter=".type_dontion">Donations</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row grid2">
-                <div class="col-xl-3 col-sm-6 col-md-4 col-lg-4 clotha spka wata">
+
+                @foreach ($typeBaseProducts as $key => $products)
+
+                 @foreach ($products as $product)
+                 <div class="col-xl-3 col-sm-6 col-md-4 col-lg-4 {{$key}}">
                     <div class="wsus__product_item">
                         <span class="wsus__minus">-20%</span>
                         <a class="wsus__pro_link" href="product_details.html">
@@ -175,212 +176,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 col-md-4 col-lg-4 eleca cama">
-                    <div class="wsus__product_item">
-                        <a class="wsus__pro_link" href="product_details.html">
-                            <img src="images/headphone_1.jpg" alt="product" class="img-fluid w-100 img_1" />
-                            <img src="images/headphone_2.jpg" alt="product" class="img-fluid w-100 img_2" />
-                        </a>
-                        <ul class="wsus__single_pro_icon">
-                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                        class="far fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-random"></i></a>
-                        </ul>
-                        <div class="wsus__product_details">
-                            <a class="wsus__category" href="#">Electronics </a>
-                            <p class="wsus__pro_rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(120 review)</span>
-                            </p>
-                            <a class="wsus__pro_name" href="#">man casual fashion cap</a>
-                            <p class="wsus__price">$115</p>
-                            <a class="add_cart" href="#">add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-md-4 col-lg-4 clotha spka cama wata">
-                    <div class="wsus__product_item">
-                        <a class="wsus__pro_link" href="product_details.html">
-                            <img src="images/tab_1.jpg" alt="product" class="img-fluid w-100 img_1" />
-                            <img src="images/tab_2.jpg" alt="product" class="img-fluid w-100 img_2" />
-                        </a>
-                        <ul class="wsus__single_pro_icon">
-                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                        class="far fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-random"></i></a>
-                        </ul>
-                        <div class="wsus__product_details">
-                            <a class="wsus__category" href="#">Electronics </a>
-                            <p class="wsus__pro_rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(120 review)</span>
-                            </p>
-                            <a class="wsus__pro_name" href="#">man casual fashion cap</a>
-                            <p class="wsus__price">$159</p>
-                            <a class="add_cart" href="#">add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-md-4 col-lg-4 clotha eleca cama">
-                    <div class="wsus__product_item">
-                        <span class="wsus__minus">-20%</span>
-                        <a class="wsus__pro_link" href="product_details.html">
-                            <img src="images/mobile_1.jpg" alt="product" class="img-fluid w-100 img_1" />
-                            <img src="images/mobile_2.jpg" alt="product" class="img-fluid w-100 img_2" />
-                        </a>
-                        <ul class="wsus__single_pro_icon">
-                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                        class="far fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-random"></i></a>
-                        </ul>
-                        <div class="wsus__product_details">
-                            <a class="wsus__category" href="#">Electronics </a>
-                            <p class="wsus__pro_rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(120 review)</span>
-                            </p>
-                            <a class="wsus__pro_name" href="#">man casual fashion cap</a>
-                            <p class="wsus__price">$189 <del>$199</del></p>
-                            <a class="add_cart" href="#">add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-md-4 col-lg-4 clotha spka wata">
-                    <div class="wsus__product_item">
-                        <span class="wsus__new">New</span>
-                        <span class="wsus__minus">-20%</span>
-                        <a class="wsus__pro_link" href="product_details.html">
-                            <img src="images/charger_2.jpg" alt="product" class="img-fluid w-100 img_1" />
-                            <img src="images/charger_1.jpg" alt="product" class="img-fluid w-100 img_2" />
-                        </a>
-                        <ul class="wsus__single_pro_icon">
-                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                        class="far fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-random"></i></a>
-                        </ul>
-                        <div class="wsus__product_details">
-                            <a class="wsus__category" href="#">Electronics </a>
-                            <p class="wsus__pro_rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(74 review)</span>
-                            </p>
-                            <a class="wsus__pro_name" href="#">8.5 VA first charger</a>
-                            <p class="wsus__price">$160</p>
-                            <a class="add_cart" href="#">add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-md-4 col-lg-4 eleca cama">
-                    <div class="wsus__product_item">
-                        <a class="wsus__pro_link" href="product_details.html">
-                            <img src="images/headphone_1.jpg" alt="product" class="img-fluid w-100 img_1" />
-                            <img src="images/headphone_2.jpg" alt="product" class="img-fluid w-100 img_2" />
-                        </a>
-                        <ul class="wsus__single_pro_icon">
-                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                        class="far fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-random"></i></a>
-                        </ul>
-                        <div class="wsus__product_details">
-                            <a class="wsus__category" href="#">Electronics </a>
-                            <p class="wsus__pro_rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(120 review)</span>
-                            </p>
-                            <a class="wsus__pro_name" href="#">man casual fashion cap</a>
-                            <p class="wsus__price">$115</p>
-                            <a class="add_cart" href="#">add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-md-4 col-lg-4 clotha spka cama wata">
-                    <div class="wsus__product_item">
-                        <a class="wsus__pro_link" href="product_details.html">
-                            <img src="images/tab_1.jpg" alt="product" class="img-fluid w-100 img_1" />
-                            <img src="images/tab_2.jpg" alt="product" class="img-fluid w-100 img_2" />
-                        </a>
-                        <ul class="wsus__single_pro_icon">
-                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                        class="far fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-random"></i></a>
-                        </ul>
-                        <div class="wsus__product_details">
-                            <a class="wsus__category" href="#">Electronics </a>
-                            <p class="wsus__pro_rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(120 review)</span>
-                            </p>
-                            <a class="wsus__pro_name" href="#">man casual fashion cap</a>
-                            <p class="wsus__price">$159</p>
-                            <a class="add_cart" href="#">add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-md-4 col-lg-4 clotha eleca cama">
-                    <div class="wsus__product_item">
-                        <span class="wsus__new">New</span>
-                        <span class="wsus__minus">-20%</span>
-                        <a class="wsus__pro_link" href="product_details.html">
-                            <img src="images/mobile_1.jpg" alt="product" class="img-fluid w-100 img_1" />
-                            <img src="images/mobile_2.jpg" alt="product" class="img-fluid w-100 img_2" />
-                        </a>
-                        <ul class="wsus__single_pro_icon">
-                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                        class="far fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-random"></i></a>
-                        </ul>
-                        <div class="wsus__product_details">
-                            <a class="wsus__category" href="#">Electronics </a>
-                            <p class="wsus__pro_rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(120 review)</span>
-                            </p>
-                            <a class="wsus__pro_name" href="#">man casual fashion cap</a>
-                            <p class="wsus__price">$189 <del>$199</del></p>
-                            <a class="add_cart" href="#">add to cart</a>
-                        </div>
-                    </div>
-                </div>
+                 @endforeach
+                
+                @endforeach
+             
+
             </div>
         </div>
 
-        <section id="wsus__single_banner" class="home_2_single_banner">
+        {{-- <section id="wsus__single_banner" class="home_2_single_banner">
             <div class="container">
+
                 <div class="row">
                     <div class="col-xl-6 col-lg-6">
                         <div class="wsus__single_banner_content banner_1">
@@ -424,7 +230,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
         <div class="wsus__hot_small_item wsus__hot_small_item_2">
             <div class="row">

@@ -9,7 +9,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\CollectionPointController;
-use App\Http\Controllers\BeginnerQuizController; 
+use App\Http\Controllers\BeginnerQuizController;
+use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\ImageMatchingController;
 use App\Http\Controllers\IntermediateImageMatchingQuizController;
 use App\Http\Controllers\IntermediateQuizController;
@@ -93,5 +94,6 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
 
 //Route::match(['get', 'post'], 'user/collection-points/nearest', [CollectionPointController::class, 'findNearest'])->name('user.collectionPoints.nearest');
 
+//product details Routes
 
-
+Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProduct'])->name('product-detail');

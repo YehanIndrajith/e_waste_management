@@ -37,14 +37,18 @@
           </ul>
         </li>
 
+
         <li class="dropdown {{ setActive([
           'admin.slider.*'   
         ])}}">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Website</span></a>
           <ul class="dropdown-menu">
             <li class="{{setActive(['admin.slider.*'])}}"><a class="nav-link" href="{{route('admin.slider.index')}}">Slider</a></li>
+
+            <li class="{{setActive(['admin.slider.*'])}}"><a class="nav-link" href="{{route('admin.home-page-setting')}}">Home Page Settings</a></li>
           </ul>
         </li>
+       
 
         {{-- Manage Products --}}
         <li class="dropdown {{ setActive([
@@ -54,10 +58,13 @@
           <ul class="dropdown-menu">
             <li class="{{setActive(['admin.products.*'])}}"><a class="nav-link" href="{{route('admin.products.index')}}">Products</a></li>
             <li class="{{setActive(['admin.products.*'])}}"><a class="nav-link" href="{{route('admin.seller-products.index')}}">Seller Products</a></li>
+            <li class="{{setActive(['admin.products.*'])}}"><a class="nav-link" href="{{route('admin.seller-pending-products.index')}}">Seller Pending Products</a></li>
           </ul>
         </li>
         
       </ul>
+
+      <li><a class="nav-link" href="{{route('admin.settings.index')}}">Settings</a></li>
 
             </aside>
   </div>
