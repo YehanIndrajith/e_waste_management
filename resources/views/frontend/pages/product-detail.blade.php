@@ -1,10 +1,9 @@
 @extends('frontend.home.layouts.master')
 
 @section('content')
-
-<!--==========================
-      PRODUCT MODAL VIEW START
-    ===========================-->
+    <!--==========================
+          PRODUCT MODAL VIEW START
+        ===========================-->
     <section class="product_popup_modal">
         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
@@ -84,7 +83,8 @@
                                     <div class="wsus__quentity">
                                         <h5>quentity :</h5>
                                         <form class="select_number">
-                                            <input class="number_area" type="text" min="1" max="100" value="1" />
+                                            <input class="number_area" type="text" min="1" max="100"
+                                                value="1" />
                                         </form>
                                         <h3>$50.00</h3>
                                     </div>
@@ -123,10 +123,13 @@
                                     <div class="wsus__pro_det_share">
                                         <h5>share :</h5>
                                         <ul class="d-flex">
-                                            <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a>
+                                            </li>
                                             <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a class="whatsapp" href="#"><i class="fab fa-whatsapp"></i></a></li>
-                                            <li><a class="instagram" href="#"><i class="fab fa-instagram"></i></a></li>
+                                            <li><a class="whatsapp" href="#"><i class="fab fa-whatsapp"></i></a>
+                                            </li>
+                                            <li><a class="instagram" href="#"><i class="fab fa-instagram"></i></a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -138,13 +141,13 @@
         </div>
     </section>
     <!--==========================
-      PRODUCT MODAL VIEW END
-    ===========================-->
+          PRODUCT MODAL VIEW END
+        ===========================-->
 
 
     <!--============================
-        BREADCRUMB START
-    ==============================-->
+            BREADCRUMB START
+        ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -162,13 +165,13 @@
         </div>
     </section>
     <!--============================
-        BREADCRUMB END
-    ==============================-->
+            BREADCRUMB END
+        ==============================-->
 
 
     <!--============================
-        PRODUCT DETAILS START
-    ==============================-->
+            PRODUCT DETAILS START
+        ==============================-->
     <section id="wsus__product_details">
         <div class="container">
             <div class="wsus__details_bg">
@@ -177,19 +180,17 @@
                         <div id="sticky_pro_zoom">
                             <div class="exzoom hidden" id="exzoom">
                                 <div class="exzoom_img_box">
-                                    <a class="venobox wsus__pro_det_video" data-autoplay="true" data-vbtype="video"
-                                        href="https://youtu.be/7m16dFI1AF8">
-                                        <i class="fas fa-play"></i>
-                                    </a>
+                                    @if ($product->video_link)
+                                        <a class="venobox wsus__pro_det_video" data-autoplay="true" data-vbtype="video"
+                                            href="{{ $product->video_link }}">
+                                            <i class="fas fa-play"></i>
+                                        </a>
+                                    @endif
+
                                     <ul class='exzoom_img_ul'>
-                                        <li><img class="zoom ing-fluid w-100" src="images/zoom1.jpg" alt="product"></li>
-                                        <li><img class="zoom ing-fluid w-100" src="images/zoom2.jpg" alt="product"></li>
-                                        <li><img class="zoom ing-fluid w-100" src="images/zoom3.jpg" alt="product"></li>
-                                        <li><img class="zoom ing-fluid w-100" src="images/zoom4.jpg" alt="product"></li>
-                                        <li><img class="zoom ing-fluid w-100" src="images/zoom1.jpg" alt="product"></li>
-                                        <li><img class="zoom ing-fluid w-100" src="images/zoom2.jpg" alt="product"></li>
-                                        <li><img class="zoom ing-fluid w-100" src="images/zoom1.jpg" alt="product"></li>
-                                        <li><img class="zoom ing-fluid w-100" src="images/zoom2.jpg" alt="product"></li>
+                                        <li><img class="zoom ing-fluid w-100" src="{{ asset($product->thumb_image) }}"
+                                                alt="product"></li>
+
                                     </ul>
                                 </div>
                                 <div class="exzoom_nav"></div>
@@ -204,81 +205,77 @@
                     </div>
                     <div class="col-xl-5 col-md-7 col-lg-7">
                         <div class="wsus__pro_details_text">
-                            <a class="title" href="#">Electronics Black Wrist Watch</a>
-                            <p class="wsus__stock_area"><span class="in_stock">in stock</span> (167 item)</p>
-                            <h4>$50.00 <del>$60.00</del></h4>
-                            <p class="review">
+                            <a class="title" href="javascript:;">{{ $product->name }}</a>
+                            <p class="wsus__stock_area"><span class="in_stock">in stock</span> </p>
+                            <h4>Rs. {{ $product->price }} </h4>
+                            {{-- <p class="review">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star-half-alt"></i>
                                 <span>20 review</span>
-                            </p>
+                            </p> --}}
                             <!-- <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
-                                neque
-                                sint obcaecati asperiores dolor cumque. ad voluptate dolores reprehenderit hic adipisci
-                                Similique eaque illum.</p> -->
+                                    neque
+                                    sint obcaecati asperiores dolor cumque. ad voluptate dolores reprehenderit hic adipisci
+                                    Similique eaque illum.</p> -->
 
                             <div class="wsus_pro_hot_deals">
                                 <h5>offer ending time : </h5>
                                 <div class="simply-countdown simply-countdown-one"></div>
                             </div>
+
                             <div class="wsus_pro_det_color">
-                                <h5>color :</h5>
-                                <ul>
-                                    <li><a class="blue" href="#"><i class="far fa-check"></i></a></li>
-                                    <li><a class="orange" href="#"><i class="far fa-check"></i></a></li>
-                                    <li><a class="yellow" href="#"><i class="far fa-check"></i></a></li>
-                                    <li><a class="black" href="#"><i class="far fa-check"></i></a></li>
-                                    <li><a class="red" href="#"><i class="far fa-check"></i></a></li>
-                                </ul>
+                                @php
+                                $badgeClass = '';
+                                $badgeName = '';
+                            
+                                if ($product->eco_rating >= 61 && $product->eco_rating <= 100) {
+                                    $badgeClass = 'bg-success'; // Green
+                                    $badgeName = 'High';
+                                } elseif ($product->eco_rating >= 31 && $product->eco_rating <= 60) {
+                                    $badgeClass = 'bg-warning'; // Yellow
+                                    $badgeName = 'Medium';
+                                } else {
+                                    $badgeClass = 'bg-danger'; // Red
+                                    $badgeName = 'Low';
+                                }
+                            @endphp
+                            
+                            <h5>Eco Rating: <span class="badge {{ $badgeClass }}">{{ $badgeName }}</span></h5>
+                            
+                            
+
+
                             </div>
+
                             <div class="wsus_pro__det_size">
-                                <h5>size :</h5>
-                                <ul>
-                                    <li><a href="#">S</a></li>
-                                    <li><a href="#">M</a></li>
-                                    <li><a href="#">L</a></li>
-                                    <li><a href="#">XL</a></li>
-                                </ul>
+                                <h5>Type :</h5>
+                                @if ($product->product_type === 'type_selling')
+                                    <span class="badge bg-primary p-2" style="font-size: 1.1rem;">
+                                        <i class="fas fa-donate me-1"></i> Selling
+                                    </span>
+                                @elseif ($product->product_type === 'type_dontion')
+                                    <span class="badge bg-warning p-2 text-dark" style="font-size: 1.1rem;">
+                                        <i class="fas fa-award me-1"></i> Donation
+                                    </span>
+                                @endif
                             </div>
                             <div class="wsus__quentity">
                                 <h5>quentity :</h5>
                                 <form class="select_number">
-                                    <input class="number_area" type="text" min="1" max="100" value="1" />
+                                    <input class="number_area" type="text" min="1" max="100"
+                                        value="1" />
                                 </form>
                                 <h3>$50.00</h3>
                             </div>
-                            <div class="wsus__selectbox">
-                                <div class="row">
-                                    <div class="col-xl-6 col-sm-6">
-                                        <h5 class="mb-2">select:</h5>
-                                        <select class="select_2" name="state">
-                                            <option>default select</option>
-                                            <option>select 1</option>
-                                            <option>select 2</option>
-                                            <option>select 3</option>
-                                            <option>select 4</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-xl-6 col-sm-6">
-                                        <h5 class="mb-2">select:</h5>
-                                        <select class="select_2" name="state">
-                                            <option>default select</option>
-                                            <option>select 1</option>
-                                            <option>select 2</option>
-                                            <option>select 3</option>
-                                            <option>select 4</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+
                             <ul class="wsus__button_area">
-                                <li><a class="add_cart" href="#">add to cart</a></li>
+                                {{-- <li><a class="add_cart" href="#">add to cart</a></li> --}}
                                 <li><a class="buy_now" href="#">buy now</a></li>
-                                <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                <li><a href="#"><i class="far fa-random"></i></a></li>
+                                {{-- <li><a href="#"><i class="fal fa-heart"></i></a></li> --}}
+                                {{-- <li><a href="#"><i class="far fa-random"></i></a></li> --}}
                             </ul>
                             <p class="brand_model"><span>model :</span> 12345670</p>
                             <p class="brand_model"><span>brand :</span> The Northland</p>
@@ -346,31 +343,31 @@
                                         data-bs-target="#pills-home22" type="button" role="tab"
                                         aria-controls="pills-home" aria-selected="true">Description</button>
                                 </li>
-                                <li class="nav-item" role="presentation">
+                                {{-- <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-profile-tab7" data-bs-toggle="pill"
                                         data-bs-target="#pills-profile22" type="button" role="tab"
                                         aria-controls="pills-profile" aria-selected="false">Information</button>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-contact" type="button" role="tab"
                                         aria-controls="pills-contact" aria-selected="false">Vendor Info</button>
                                 </li>
-                                <li class="nav-item" role="presentation">
+                                {{-- <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-contact-tab2" data-bs-toggle="pill"
                                         data-bs-target="#pills-contact2" type="button" role="tab"
                                         aria-controls="pills-contact2" aria-selected="false">Reviews</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
+                                </li> --}}
+                                {{-- <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-contact-tab23" data-bs-toggle="pill"
                                         data-bs-target="#pills-contact23" type="button" role="tab"
                                         aria-controls="pills-contact23" aria-selected="false">comment</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
+                                </li> --}}
+                                {{-- <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-contact-tab239" data-bs-toggle="pill"
                                         data-bs-target="#pills-contact239" type="button" role="tab"
                                         aria-controls="pills-contact239" aria-selected="false">faqs</button>
-                                </li>
+                                </li> --}}
                             </ul>
                             <div class="tab-content" id="pills-tabContent4">
                                 <div class="tab-pane fade  show active " id="pills-home22" role="tabpanel"
@@ -379,20 +376,9 @@
                                         <div class="col-xl-12">
                                             <div class="wsus__description_area">
                                                 <h1>Heading</h1>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum
-                                                    sapiente aliquam ut neque voluptatibus inventore odit nesciunt.
-                                                    Nobis quas saepe repellat repudiandae qui sint? Delectus dignissimos
-                                                    maiores fuga doloremque magni, ratione provident exercitationem
-                                                    aliquam tempore velit facere autem magnam, architecto inventore
-                                                    recusandae dolorum, illo sequi officiis dolore! Unde enim,
-                                                    exercitationem. Lorem ipsum</p>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum
-                                                    sapiente aliquam ut neque voluptatibus inventore odit nesciunt.
-                                                    Nobis quas saepe repellat repudiandae qui sint? Delectus dignissimos
-                                                    maiores fuga doloremque magni, ratione provident exercitationem
-                                                    aliquam tempore velit facere autem magnam, architecto inventore
-                                                    recusandae dolorum, illo sequi officiis dolore! Unde enim,
-                                                    exercitationem. Lorem ipsum</p>
+                                                <p>{{ $product->short_description }}</p>
+
+                                                <p>{{ $product->long_description }}</p>
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum
                                                     sapiente aliquam ut neque voluptatibus inventore odit nesciunt.
                                                     Nobis quas saepe repellat repudiandae qui sint? Delectus dignissimos
@@ -496,7 +482,8 @@
                                         <div class="row">
                                             <div class="col-xl-6 col-xxl-5 col-md-6">
                                                 <div class="wsus__vebdor_img">
-                                                    <img src="images/slider_1.jpg" alt="vensor" class="img-fluid w-100">
+                                                    <img src="images/slider_1.jpg" alt="vensor"
+                                                        class="img-fluid w-100">
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-xxl-7 col-md-6 mt-4 mt-md-0">
@@ -593,8 +580,7 @@
                                                                                     <div
                                                                                         class="wsus__riv_edit_single text_area">
                                                                                         <i class="far fa-edit"></i>
-                                                                                        <textarea cols="3" rows="1"
-                                                                                            placeholder="Your Text"></textarea>
+                                                                                        <textarea cols="3" rows="1" placeholder="Your Text"></textarea>
                                                                                     </div>
                                                                                     <button type="submit"
                                                                                         class="common_btn">submit</button>
@@ -611,8 +597,7 @@
                                                                     class="img-fluid w-100">
                                                             </div>
                                                             <div class="wsus__comment_text reply">
-                                                                <h6>Smith jhon <span>5 <i
-                                                                            class="fas fa-star"></i></span>
+                                                                <h6>Smith jhon <span>5 <i class="fas fa-star"></i></span>
                                                                 </h6>
                                                                 <span>09 Jul 2021</span>
                                                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -633,8 +618,7 @@
                                                                                     <div
                                                                                         class="wsus__riv_edit_single text_area">
                                                                                         <i class="far fa-edit"></i>
-                                                                                        <textarea cols="3" rows="1"
-                                                                                            placeholder="Your Text"></textarea>
+                                                                                        <textarea cols="3" rows="1" placeholder="Your Text"></textarea>
                                                                                     </div>
                                                                                     <button type="submit"
                                                                                         class="common_btn">submit</button>
@@ -654,8 +638,8 @@
                                                                             <i class="fas fa-chevron-left"></i>
                                                                         </a>
                                                                     </li>
-                                                                    <li class="page-item"><a
-                                                                            class="page-link page_active" href="#">1</a>
+                                                                    <li class="page-item"><a class="page-link page_active"
+                                                                            href="#">1</a>
                                                                     </li>
                                                                     <li class="page-item"><a class="page-link"
                                                                             href="#">2</a></li>
@@ -664,7 +648,8 @@
                                                                     <li class="page-item"><a class="page-link"
                                                                             href="#">4</a></li>
                                                                     <li class="page-item">
-                                                                        <a class="page-link" href="#" aria-label="Next">
+                                                                        <a class="page-link" href="#"
+                                                                            aria-label="Next">
                                                                             <i class="fas fa-chevron-right"></i>
                                                                         </a>
                                                                     </li>
@@ -699,8 +684,7 @@
                                                                 <div class="col-xl-12">
                                                                     <div class="col-xl-12">
                                                                         <div class="wsus__single_com">
-                                                                            <textarea cols="3" rows="3"
-                                                                                placeholder="Write your review"></textarea>
+                                                                            <textarea cols="3" rows="3" placeholder="Write your review"></textarea>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -751,8 +735,7 @@
                                                                                 <div
                                                                                     class="wsus__riv_edit_single text_area">
                                                                                     <i class="far fa-edit"></i>
-                                                                                    <textarea cols="3" rows="1"
-                                                                                        placeholder="Your Text"></textarea>
+                                                                                    <textarea cols="3" rows="1" placeholder="Your Text"></textarea>
                                                                                 </div>
                                                                                 <button type="submit"
                                                                                     class="common_btn">submit</button>
@@ -786,8 +769,7 @@
                                                                                 <div
                                                                                     class="wsus__riv_edit_single text_area">
                                                                                     <i class="far fa-edit"></i>
-                                                                                    <textarea cols="3" rows="1"
-                                                                                        placeholder="Your Text"></textarea>
+                                                                                    <textarea cols="3" rows="1" placeholder="Your Text"></textarea>
                                                                                 </div>
                                                                                 <button type="submit"
                                                                                     class="common_btn">submit</button>
@@ -821,8 +803,7 @@
                                                                                 <div
                                                                                     class="wsus__riv_edit_single text_area">
                                                                                     <i class="far fa-edit"></i>
-                                                                                    <textarea cols="3" rows="1"
-                                                                                        placeholder="Your Text"></textarea>
+                                                                                    <textarea cols="3" rows="1" placeholder="Your Text"></textarea>
                                                                                 </div>
                                                                                 <button type="submit"
                                                                                     class="common_btn">submit</button>
@@ -837,7 +818,8 @@
                                                         <nav aria-label="Page navigation example">
                                                             <ul class="pagination">
                                                                 <li class="page-item">
-                                                                    <a class="page-link" href="#" aria-label="Previous">
+                                                                    <a class="page-link" href="#"
+                                                                        aria-label="Previous">
                                                                         <i class="fas fa-chevron-left"></i>
                                                                     </a>
                                                                 </li>
@@ -853,7 +835,8 @@
                                                                         href="#">4</a>
                                                                 </li>
                                                                 <li class="page-item">
-                                                                    <a class="page-link" href="#" aria-label="Next">
+                                                                    <a class="page-link" href="#"
+                                                                        aria-label="Next">
                                                                         <i class="fas fa-chevron-right"></i>
                                                                     </a>
                                                                 </li>
@@ -879,8 +862,7 @@
                                                             </div>
                                                             <div class="col-xl-12">
                                                                 <div class="wsus__single_com">
-                                                                    <textarea cols="3" rows="3"
-                                                                        placeholder="Your Comment"></textarea>
+                                                                    <textarea cols="3" rows="3" placeholder="Your Comment"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -947,9 +929,8 @@
                                                     <div class="accordion-item">
                                                         <h2 class="accordion-header" id="headingThree">
                                                             <button class="accordion-button collapsed" type="button"
-                                                                data-bs-toggle="collapse"
-                                                                data-bs-target="#collapseThree" aria-expanded="false"
-                                                                aria-controls="collapseThree">
+                                                                data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                                aria-expanded="false" aria-controls="collapseThree">
                                                                 What do I need to buy products?
                                                             </button>
                                                         </h2>
@@ -1030,13 +1011,13 @@
         </div>
     </section>
     <!--============================
-        PRODUCT DETAILS END
-    ==============================-->
+            PRODUCT DETAILS END
+        ==============================-->
 
 
     <!--============================
-        RELATED PRODUCT START
-    ==============================-->
+            RELATED PRODUCT START
+        ==============================-->
     <section id="wsus__flash_sell">
         <div class="container">
             <div class="row">
@@ -1200,7 +1181,6 @@
         </div>
     </section>
     <!--============================
-        RELATED PRODUCT END
-    ==============================-->
-
+            RELATED PRODUCT END
+        ==============================-->
 @endsection

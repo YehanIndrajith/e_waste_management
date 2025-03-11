@@ -8,12 +8,12 @@
     }])
     ->get();
 @endphp
-<nav class="wsus__main_menu d-none d-lg-block">
+<nav style="background-color: rgb(159, 237, 177)" class="wsus__main_menu d-none d-lg-block">
     <div class="container">
         <div class="row">
             <div class="col-xl-12">
-                <div class="relative_contect d-flex">
-                    <div class="wsus_menu_category_bar">
+                <div style="background-color: rgb(159, 237, 177)"  class="relative_contect d-flex">
+                    <div style="background-color: rgb(81, 187, 106)"  class="wsus_menu_category_bar">
                         <i class="far fa-bars"></i>
                     </div>
                     <ul class="wsus_menu_cat_item show_home toggle_menu">
@@ -55,7 +55,7 @@
                         <li><a href="#"><i class="fal fa-gem"></i> View All Categories</a></li>
                     </ul>
 
-                    <ul class="wsus__menu_item">
+                    <ul  class="wsus__menu_item">
                         <li><a class="active" href="index.html">home</a></li>
                         <li><a href="product_grid_view.html">shop <i class="fas fa-caret-down"></i></a>
                             <div class="wsus__mega_menu">
@@ -123,7 +123,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a href="vendor.html">vendor</a></li>
+                        <li><a href="{{route('login')}}">vendor</a></li>
                         <li><a href="blog.html">blog</a></li>
                         <li><a href="daily_deals.html">campain</a></li>
                         <li class="wsus__relative_li"><a href="#">pages <i class="fas fa-caret-down"></i></a>
@@ -143,11 +143,11 @@
                                 <li><a href="brands.html">brands</a></li>
                             </ul>
                         </li>
-                        <li><a href="track_order.html">track order</a></li>
+                        <li><a href="{{route('frontend.show-collection-points.index')}}">Collection Points</a></li>
                         <li><a href="daily_deals.html">daily deals</a></li>
                     </ul>
 
-                    <ul class="wsus__menu_item wsus__menu_item_right">
+                    <ul  class="wsus__menu_item wsus__menu_item_right">
                         <li><a href="contact.html">contact</a></li>
                         <li><a href="dsahboard.html">my account</a></li>
                         <li><a href="{{route('login')}}">login</a></li>

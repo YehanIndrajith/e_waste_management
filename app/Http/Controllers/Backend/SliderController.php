@@ -35,8 +35,8 @@ class SliderController extends Controller
     {
         $request->validate([
             'banner' => ['required', 'image', 'max:3000'], // Validate image upload
-            'header_1' => ['required', 'string', 'max:200'],
-            'header_2' => ['required', 'string', 'max:200'],
+            'header_1' => ['nullable', 'string', 'max:200'],
+            'header_2' => ['nullable', 'string', 'max:200'],
             'header_3' => ['nullable', 'string', 'max:200'],
             'btn_url' => ['nullable', 'url'], // Allow null and validate as URL
             'serial' => ['required', 'integer'],
@@ -88,8 +88,8 @@ class SliderController extends Controller
     {
         $request->validate([
             'banner' => ['nullable', 'image', 'max:3000'], // Validate image upload
-            'header_1' => ['required', 'string', 'max:200'],
-            'header_2' => ['required', 'string', 'max:200'],
+            'header_1' => ['nullable', 'string', 'max:200'],
+            'header_2' => ['nullable', 'string', 'max:200'],
             'header_3' => ['nullable', 'string', 'max:200'],
             'btn_url' => ['nullable', 'url'], // Allow null and validate as URL
             'serial' => ['required', 'integer'],

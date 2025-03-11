@@ -1,4 +1,4 @@
-<footer class="footer_2">
+<footer style="background-color: rgb(12, 188, 53)" class="footer_2">
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-xl-3 col-sm-7 col-md-6 col-lg-3">
@@ -65,12 +65,12 @@
             </div>
         </div>
     </div>
-    <div class="wsus__footer_bottom">
+    <div style="background-color: rgb(34, 134, 57)" class="wsus__footer_bottom">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
                     <div class="wsus__copyright d-flex justify-content-center">
-                        <p>Copyright © 2021 Sazao shop. All Rights Reserved.</p>
+                        <p>Copyright © 2025 E - Waste Management System. All Rights Reserved.</p>
                     </div>
                 </div>
             </div>

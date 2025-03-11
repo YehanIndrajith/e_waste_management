@@ -60,9 +60,17 @@
                         <div class="dropzone mb-4" id="reuse2" data-category="Re-use"></div>
                     </div>
                 </div>
+                <div class="d-flex gap-2 mb-3">
+                    {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
+                    <a href="{{route('user.activities.beginner.puzzle')}}" class="btn btn-secondary">Next Activity</a>
+                    <a href="{{ route('user.dashboard') }}" class="btn btn-secondary">Go to Dashboard</a>
+                </div>
             </div>
+            
         </div>
+        
     </div>
+    
 </section>
 
 <style>

@@ -23,6 +23,7 @@
                     <td>{{ $result['is_correct'] ? '✔️' : '❌' }}</td>
                 </tr>
             @endforeach
+         
         </tbody>
     </table>
     <a href="{{ route('user.activities.beginner.quiz') }}" class="btn btn-primary">Try Again</a>

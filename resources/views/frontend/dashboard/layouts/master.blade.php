@@ -7,7 +7,7 @@
   content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <title>One Shop || e-Commerce HTML Template</title>
-  <link rel="icon" type="image/png" href="images/favicon.png">
+  {{-- <link rel="" type="image/png" href="#"> --}}
   <link rel="stylesheet" href="{{asset('frontend/css/all.min.css')}}">
   <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('frontend/css/select2.min.css')}}">
@@ -27,6 +27,7 @@
   <!-- <link rel="stylesheet" href="css/rtl.css"> -->
  {{-- map css  --}}
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -37,8 +38,8 @@
   ==============================-->
   <div class="wsus__dashboard_menu">
     <div class="wsusd__dashboard_user">
-      <img src="images/dashboard_user.jpg" alt="img" class="img-fluid">
-      <p>anik roy</p>
+      {{-- <img src="#" alt="img" class="img-fluid"> --}}
+      <p>E-Waste-Management</p>
     </div>
   </div>
   <!--=============================
@@ -103,8 +104,17 @@
     <!--maps js-->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
   <!--main/custom js-->
   <script src="{{asset('frontend/js/main.js')}}"></script>
+  <script>
+    @if($errors->any())
+       @foreach ($errors->all() as $error)
+        toastr.$error("{{$error}}")
+       @endforeach
+    @endif
+</script>
 </body>
 
 </html>

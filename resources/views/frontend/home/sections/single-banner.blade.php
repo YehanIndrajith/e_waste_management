@@ -1,4 +1,4 @@
-<section id="wsus__single_banner" class="wsus__single_banner_2">
+{{-- <section id="wsus__single_banner" class="wsus__single_banner_2">
     <div class="container">
         <div class="row">
             <div class="col-xl-6 col-lg-6">
@@ -27,4 +27,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}

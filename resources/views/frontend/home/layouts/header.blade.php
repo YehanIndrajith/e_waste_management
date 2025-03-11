@@ -1,6 +1,6 @@
-<header>
-    <div class="container">
-        <div class="row">
+<header style="background-color: rgb(12, 188, 53)">
+    <div  class="container">
+        <div  class="row">
             <div class="col-2 col-md-1 d-lg-none">
                 <div class="wsus__mobile_menu_area">
                     <span class="wsus__mobile_menu_icon"><i class="fal fa-bars"></i></span>
@@ -28,16 +28,16 @@
                             <i class="fas fa-user-headset"></i>
                         </div>
                         <div class="wsus__call_text">
-                            <p>example@gmail.com</p>
+                            <p>ewaste@gmail.com</p>
                             <p>+569875544220</p>
                         </div>
                     </div>
-                    <ul class="wsus__icon_area">
+                    {{-- <ul class="wsus__icon_area">
                         <li><a href="wishlist.html"><i class="fal fa-heart"></i><span>05</span></a></li>
                         <li><a href="compare.html"><i class="fal fa-random"></i><span>03</span></a></li>
                         <li><a class="wsus__cart_icon" href="#"><i
                                     class="fal fa-shopping-bag"></i><span>04</span></a></li>
-                    </ul>
+                    </ul> --}}
                 </div>
             </div>
         </div>

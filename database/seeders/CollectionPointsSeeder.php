@@ -1,9 +1,10 @@
 <?php
 
+
 namespace Database\Seeders;
 
-use App\Models\CollectionPoint;
 use Illuminate\Database\Seeder;
+use App\Models\CollectionPoint;
 
 class CollectionPointsSeeder extends Seeder
 {
@@ -11,45 +12,55 @@ class CollectionPointsSeeder extends Seeder
     {
         $collectionPoints = [
             [
-                'name' => 'Ceylon Waste Management Pvt Ltd',
-                'address' => '65C, 8th Mile Post, Welivita',
-                'latitude' => '6.934897', // Approximate latitude
-                'longitude' => '79.884998', // Approximate longitude
-                'contact_info' => 'Mobile: 077 5501845, Office: 0114 504687, Email: info@ceylonwaste.com',
+                'name' => 'E-Sampath Piyasa',
+                'address' => 'VVP8+3RJ, Colombo - Ratnapura - Wellawaya - Batticaloa Rd, Colombo 00500',
+                'latitude' => '6.885213',
+                'longitude' => '79.867027',
+                'contact_info' => null,
+            ],
+            [
+                'name' => 'Cleantech Sampath Piyasa',
+                'address' => 'Sri Jayawardenepura Kotte',
+                'latitude' => '6.908736',
+                'longitude' => '79.894834',
+                'contact_info' => null,
+            ],
+            [
+                'name' => 'Waste Management Authority - Diga Salu',
+                'address' => 'WW2H+P23, Hector Kobbekaduwa Mw, Colombo 00700',
+                'latitude' => '6.901795',
+                'longitude' => '79.927600',
+                'contact_info' => null,
+            ],
+            [
+                'name' => 'Cleantech Circular Economy Services',
+                'address' => '809/4 Bangalawatte Road, Wattala',
+                'latitude' => '7.004773',
+                'longitude' => '79.894924',
+                'contact_info' => null,
             ],
             [
                 'name' => 'Cleantech (Pvt) Ltd',
-                'address' => 'No. 809/5, Negombo road, Mabola, Wattala',
-                'latitude' => '7.013500', // Approximate latitude
-                'longitude' => '79.891400', // Approximate longitude
-                'contact_info' => 'Mobile: 071 9623597, Email: kasun.thennakoon@cleantech.lk',
+                'address' => '141 Bernard Soysa Mawatha, Colombo 00500',
+                'latitude' => '6.893257',
+                'longitude' => '79.873305',
+                'contact_info' => null,
             ],
             [
-                'name' => 'Eco - Biz World (Pvt) Ltd',
-                'address' => '621/3, Wekanda Road, Walgama, Malwana',
-                'latitude' => '6.927079',
-                'longitude' => '80.861244',
-                'contact_info' => 'Mobile: 077 9129100, Email: ebw@ecobizworld.com',
-            ],
-            [
-                'name' => 'Infinity Green International (Pvt) Ltd',
-                'address' => 'No. 368, New Hunupitiya Road, Dalugama, Kelaniya',
-                'latitude' => '6.974670',
-                'longitude' => '79.960258',
-                'contact_info' => 'Mobile: 077 3433183, Email: sanka@infinityzone.lk',
-            ],
-            [
-                'name' => 'Inova Environmental Services (Pvt) Ltd',
-                'address' => 'Galaboda Road, Wewalpanawa, Padukka',
-                'latitude' => '6.843700',
-                'longitude' => '80.042950',
-                'contact_info' => 'Mobile: 077 3815989, Email: ayal.piyathilaka@inovaen.com',
+                'name' => 'Cleantech E - Sampath Piyasa Maligakanda',
+                'address' => 'White Park, Colombo 01000',
+                'latitude' => '6.926263',
+                'longitude' => '79.871755',
+                'contact_info' => null,
             ],
         ];
 
+        // Insert or update data without duplicates
         foreach ($collectionPoints as $point) {
-            CollectionPoint::create($point);
+            CollectionPoint::updateOrInsert(
+                ['name' => $point['name']], // Search by 'name'
+                $point // If exists, update; if not, insert
+            );
         }
     }
 }
-

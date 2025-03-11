@@ -150,9 +150,9 @@
                  <div class="col-xl-3 col-sm-6 col-md-4 col-lg-4 {{$key}}">
                     <div class="wsus__product_item">
                         <span class="wsus__minus">-20%</span>
-                        <a class="wsus__pro_link" href="product_details.html">
-                            <img src="images/charger_2.jpg" alt="product" class="img-fluid w-100 img_1" />
-                            <img src="images/charger_1.jpg" alt="product" class="img-fluid w-100 img_2" />
+                        <a class="wsus__pro_link" href="{{route('product-detail', $product->slug)}}">
+                            <img src="{{asset($product->thumb_image)}}" alt="product" class="" />
+                            
                         </a>
                         <ul class="wsus__single_pro_icon">
                             <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
@@ -161,18 +161,18 @@
                             <li><a href="#"><i class="far fa-random"></i></a>
                         </ul>
                         <div class="wsus__product_details">
-                            <a class="wsus__category" href="#">Electronics </a>
-                            <p class="wsus__pro_rating">
+                            <a class="wsus__category" href="#">{{$product->category_id}}</a>
+                            {{-- <p class="wsus__pro_rating">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star-half-alt"></i>
                                 <span>(74 review)</span>
-                            </p>
-                            <a class="wsus__pro_name" href="#">8.5 VA first charger</a>
-                            <p class="wsus__price">$160</p>
-                            <a class="add_cart" href="#">add to cart</a>
+                            </p> --}}
+                            <a class="wsus__pro_name" href="{{route('product-detail', $product->slug)}}">{!!limitText($product->name,)!!}</a>
+                            <p class="wsus__price">Rs. {{$product->price}}</p>
+                            
                         </div>
                     </div>
                 </div>
@@ -432,7 +432,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-xl-2 col-6 col-sm-6 col-md-4 col-lg-3">
+                {{-- <div class="col-xl-2 col-6 col-sm-6 col-md-4 col-lg-3">
                     <a class="wsus__hot_deals__single" href="#">
                         <div class="wsus__hot_deals__single_img">
                             <img src="images/pro4_4.jpg" alt="bag" class="img-fluid w-100">
@@ -449,7 +449,7 @@
                             <p class="wsus__tk">$120.20 <del>130.00</del></p>
                         </div>
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

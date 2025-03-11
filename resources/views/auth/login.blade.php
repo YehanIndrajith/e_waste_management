@@ -5,7 +5,7 @@
   <!--============================
          BREADCRUMB START
     ==============================-->
-    <section id="wsus__breadcrumb">
+    <section style="background-color: rgb(159, 237, 177)"  id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
                 <div class="row">
@@ -30,12 +30,12 @@
     ==============================-->
     <section id="wsus__login_register">
         <div class="container">
-            <div class="row">
+            <div  class="row">
                 <div class="col-xl-5 m-auto">
                     <div class="wsus__login_reg_area">
                         <ul class="nav nav-pills mb-3" id="pills-tab2" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="pills-home-tab2" data-bs-toggle="pill"
+                            <li  class="nav-item" role="presentation">
+                                <button  class="nav-link active" id="pills-home-tab2" data-bs-toggle="pill"
                                     data-bs-target="#pills-homes" type="button" role="tab" aria-controls="pills-homes"
                                     aria-selected="true">login</button>
                             </li>
@@ -45,19 +45,19 @@
                                     aria-controls="pills-profiles" aria-selected="true">signup</button>
                             </li>
                         </ul>
-                        <div class="tab-content" id="pills-tabContent2">
+                        <div  class="tab-content" id="pills-tabContent2">
                             <div class="tab-pane fade show active" id="pills-homes" role="tabpanel"
                                 aria-labelledby="pills-home-tab2">
-                                <div class="wsus__login">
+                                <div  class="wsus__login">
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="wsus__login_input">
-                                            <i class="fas fa-user-tie"></i>
+                                            <i style="background-color: rgb(20, 73, 32)"  class="fas fa-user-tie"></i>
                                             <input id="email" type="email" value="{{old('email')}}" name="email" placeholder="Email">
                                         </div>
 
                                         <div class="wsus__login_input">
-                                            <i class="fas fa-key"></i>
+                                            <i style="background-color: rgb(20, 73, 32)" class="fas fa-key"></i>
                                             <input id="password" type="password"  name="password" placeholder="Password">
                                         </div>
                                         
@@ -89,22 +89,36 @@
                                     <form method="POST" action="{{ route('register') }}">
                                         @csrf
                                         <div class="wsus__login_input">
-                                            <i class="fas fa-user-tie"></i>
+                                            <i style="background-color: rgb(20, 73, 32)" class="fas fa-user-tie"></i>
                                             <input id="name" type="text" name="name" value="{{old("name")}}" placeholder="Name">
                                         </div>
 
+
                                         <div class="wsus__login_input">
-                                            <i class="far fa-envelope"></i>
+                                            <i style="background-color: rgb(20, 73, 32)" class="far fa-envelope"></i>
                                             <input id="email" type="email" name="email" value="{{old("email")}}" placeholder="Email">
                                         </div>
 
                                         <div class="wsus__login_input">
-                                            <i class="fas fa-key"></i>
+                                            <i style="background-color: rgb(20, 73, 32);" class="fas fa-user-tie"></i>
+                                            <select id="role" name="role" 
+                                                style="width: 100%; height: 40px; border: 2px solid #adc8e3; border-radius: 20px; 
+                                                padding-left: 15px; font-size: 16px; background: white; appearance: none; outline: none;">
+                                                 <option value="">Select</option>
+                                               <option value="user">User</option>
+                                                <option value="vendor">Vendor</option>
+                                            </select>
+                                        </div>
+                                        
+                                        
+
+                                        <div class="wsus__login_input">
+                                            <i style="background-color: rgb(20, 73, 32)" class="fas fa-key"></i>
                                             <input id="password" name="password" type="password" placeholder="Password">
                                         </div>
 
                                         <div class="wsus__login_input">
-                                            <i class="fas fa-key"></i>
+                                            <i style="background-color: rgb(20, 73, 32)" class="fas fa-key"></i>
                                             <input id="password_confirmation" type="password"  name="password_confirmation" placeholder="Confirm Password">
                                         </div>
 

@@ -18,6 +18,12 @@ class QuizController extends Controller
 
     public function checkAnswers(Request $request)
     {
+         $user = Auth::user();
+
+        if (Quiz1Result::where('username', $user->name)->exists()) {
+            return redirect()->route('user.dashboard')->with('error', 'You have already attempted this quiz.');
+        }
+
         // Validate the request data
         $request->validate([
             'answers' => 'required|array', // Ensure 'answers' is provided and is an array

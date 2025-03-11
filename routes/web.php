@@ -10,10 +10,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\CollectionPointController;
 use App\Http\Controllers\BeginnerQuizController;
+use App\Http\Controllers\Frontend\FrontendCollectionPointController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\ImageMatchingController;
 use App\Http\Controllers\IntermediateImageMatchingQuizController;
 use App\Http\Controllers\IntermediateQuizController;
+use App\Http\Controllers\ProImageMatchingController;
+use App\Http\Controllers\ProTriviaQuizController;
+use App\Http\Controllers\PuzzleGameController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SecondPhaseQuizController;
 use App\Models\IntermediateQuiz;
 
 // Public Route
@@ -26,6 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/reviews/{collectionPointId}', [ReviewController::class, 'index'])->name('reviews.index');
+    Route::post('/reviews/{collectionPointId}', [ReviewController::class, 'store'])->name('reviews.store');
 });
 
 
@@ -44,6 +53,8 @@ Route::post('admin/login', [AdminController::class, 'login']);
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile');
+
+
 
 
     Route::prefix('activities')->name('activities.')->group(function () {
@@ -70,6 +81,11 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
           Route::prefix('beginner')->name('beginner.')->group(function () {
               Route::get('quiz', [BeginnerQuizController::class, 'index'])->name('quiz');
               Route::post('quiz/submit', [BeginnerQuizController::class, 'checkAnswers'])->name('quiz.checkAnswers');
+
+              Route::get('puzzle', [PuzzleGameController::class, 'showBeginnerPuzzle'])->name('puzzle');
+              Route::get('second-phase-quiz', [SecondPhaseQuizController::class, 'showBeginnerQuiz'])->name('second-phase.quiz');
+              Route::post('second-phase-quiz/submit', [SecondPhaseQuizController::class, 'submitBeginnerQuiz'])->name('second-phase.quiz.submit');
+            
           });
       });
     
@@ -81,9 +97,32 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
 
             // Image Matching Routes
             Route::get('image-matching', [IntermediateImageMatchingQuizController::class, 'showImageMatchingForm'])->name('image-matching');
+
+            Route::get('puzzle', [PuzzleGameController::class, 'showIntermediatePuzzle'])->name('puzzle');
+
+            Route::get('second-phase-quiz', [SecondPhaseQuizController::class, 'showIntermediateQuiz'])->name('second-phase.quiz');
+            Route::post('second-phase-quiz/submit', [SecondPhaseQuizController::class, 'submitIntermediateQuiz'])->name('second-phase.quiz.submit');
         });
+
+        //pro
+        Route::prefix('pro')->name('pro.')->group(function () {
+            Route::get('trivia', [ProTriviaQuizController::class, 'index'])->name('trivia.index');
+            Route::post('trivia/submit', [ProTriviaQuizController::class, 'checkAnswers'])->name('trivia.submit');
+
+            Route::get('image-matching', [ProImageMatchingController::class, 'showImageMatchingForm'])->name('image-matching');
+
+            Route::get('puzzle', [PuzzleGameController::class, 'showProPuzzle'])->name('puzzle');
+
+            Route::get('second-phase-quiz', [SecondPhaseQuizController::class, 'showProQuiz'])->name('second-phase.quiz');
+            Route::post('second-phase-quiz/submit', [SecondPhaseQuizController::class, 'submitProQuiz'])->name('second-phase.quiz.submit');
+        });
+        
+    
+        
     });
 
+    
+    
 
       // Collection Point Routes
     Route::get('collection-points', [CollectionPointController::class, 'index'])->name('collectionPoints.index');
@@ -92,8 +131,16 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
  //  Route::post('collection-points/nearest', [CollectionPointController::class, 'findNearest'])->name('collectionPoints.nearest');
 });
 
+
+
+
+
 //Route::match(['get', 'post'], 'user/collection-points/nearest', [CollectionPointController::class, 'findNearest'])->name('user.collectionPoints.nearest');
 
 //product details Routes
 
 Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProduct'])->name('product-detail');
+
+Route::get('/show-collection-points', [FrontendCollectionPointController::class, 'index'])->name('frontend.show-collection-points.index');
+
+Route::match(['get', 'post'], 'show-collection-points/nearest', [FrontendCollectionPointController::class, 'findNearest'])->name('frontend.show-collection-points.nearest');

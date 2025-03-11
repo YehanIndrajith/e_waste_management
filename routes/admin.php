@@ -59,3 +59,4 @@ Route::put('general-setting-update', [SettingController::class,'generalSettingUp
 //Home Page Setting Routes
 Route::get('home-page-setting', [HomePageSettingController::class,'index'])->name('home-page-setting');
 Route::put('selling-category-section', [HomePageSettingController::class,'updateSellingCategorySection'])->name('selling-category-section');
+Route::put('product-slider-section-one', [HomePageSettingController::class,'updateProductSliderSectionOne'])->name('product-slider-section-one');

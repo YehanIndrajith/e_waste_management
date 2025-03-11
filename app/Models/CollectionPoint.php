@@ -21,4 +21,10 @@ class CollectionPoint extends Model
         'longitude',
         'contact_info',
     ];
+
+    public function reviews()
+{
+    return $this->hasMany(Review::class);
+}
+
 }

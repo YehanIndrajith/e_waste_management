@@ -12,7 +12,7 @@
                                     <h3>{!!$slider->header_2!!}</h3>
                                     <h1>{!!$slider->header_1!!}</h1>
                                     <h6>{!!$slider->header_3!!}</h6>
-                                    <a class="common_btn" href="{{$slider->btn_url}}">shop now</a>
+                                    <span style="background-color: rgb(0, 255, 17)" class="common_btn" href="{{$slider->btn_url}}">shop now this</span>
                                 </div>
                             </div>
                         </div>

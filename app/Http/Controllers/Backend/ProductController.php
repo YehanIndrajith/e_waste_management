@@ -281,8 +281,10 @@ $ageScores = [
             $normalizedScore <= 60 => 'Medium (Yellow Badge)',
             default => 'High (Green Badge)',
         };
+
+        // return $badge;
     
-        // Return JSON response
+        
         return response()->json([
             'rating' => "Score: $normalizedScore, Badge: $badge",
             'total_score' => $normalizedScore,

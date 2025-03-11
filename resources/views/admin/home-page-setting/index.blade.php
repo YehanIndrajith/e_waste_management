@@ -22,7 +22,7 @@
                     <div class="col-2">
                       <div class="list-group" id="list-tab" role="tablist">
                         <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab">Hot Selling Section</a>
-                        <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab">Messages</a>
+                        <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab">Producr Slider Section One</a>
                         <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab">Settings</a>
                       </div>
                     </div>
@@ -30,6 +30,9 @@
                       <div class="tab-content" id="nav-tabContent">
 
                        @include('admin.home-page-setting.sections.selling-category-section');
+
+                       @include('admin.home-page-setting.sections.product-slider-section-one');
+
                         <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
                           In quis non esse eiusmod sunt fugiat magna pariatur officia anim ex officia nostrud amet nisi pariatur eu est id ut exercitation ex ad reprehenderit dolore nostrud sit ut culpa consequat magna ad labore proident ad qui et tempor exercitation in aute veniam et velit dolore irure qui ex magna ex culpa enim anim ea mollit consequat ullamco exercitation in.
                         </div>
