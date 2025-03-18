@@ -1,15 +1,81 @@
-@extends('frontend.dashboard.layouts.master')
+@extends('frontend.home.layouts.master')
 
 @section('content')
-<div class="container">
-    <h3 class="mt-3 mb-3 d-flex justify-content-center">Find Certified Collection Points</h3>
-    <div id="map" style="height: 700px; width: 100%;"></div>
+<div class="container collection-points-section">
+    <div class="text-center mb-5">
+        <h3 class="section-title" style="
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: inline-block;
+            position: relative;
+            padding-bottom: 10px;
+        ">
+            Find Certified Collection Points
+            <span style="
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background: linear-gradient(to right, #2ecc71, #27ae60);
+            "></span>
+        </h3>
+        <p class="text-muted mt-3">Discover eco-friendly collection points near you</p>
+    </div>
+
+    <div id="map" style="
+        height: 500px; 
+        width: 100%; 
+        border-radius: 15px; 
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        border: 3px solid #2ecc71;
+    "></div>
     
     <div class="text-center mt-4">
-        <button id="findNearestButton" class="btn btn-primary">Find Nearest Collection Point</button>
-        
+        <button id="findNearestButton" class="btn btn-green" style="
+            background: linear-gradient(to right, #2ecc71, #27ae60);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(46,204,113,0.3);
+        ">
+            <i class="fas fa-map-marker-alt me-2"></i>
+            Find Nearest Collection Point
+        </button>
     </div>
 </div>
+
+<style>
+    .collection-points-section {
+        background-color: #f4f9f4;
+        padding: 50px 0;
+        border-radius: 20px;
+    }
+
+    .btn-green:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 25px rgba(46,204,113,0.4);
+        background: linear-gradient(to right, #27ae60, #2ecc71);
+    }
+
+    @media (max-width: 768px) {
+        #map {
+            height: 800px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+    }
+</style>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {

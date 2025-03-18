@@ -1,3 +1,4 @@
+
 @php
     $categories = \App\Models\Category::where('status', 1)
     ->with(['subCategories' => function($query){
@@ -17,7 +18,7 @@
                         <i class="far fa-bars"></i>
                     </div>
                     <ul class="wsus_menu_cat_item show_home toggle_menu">
-                        {{-- <li><a href="#"><i class="fas fa-star"></i> hot promotions</a></li> --}}
+                       
                     
                         @foreach ($categories as $category)
                         <li><a class="{{count($category->subCategories)>0 ? 'wsus__droap_arrow' : ''}}" href="#"><i class="{{$category->icon}}"></i> {{$category->name}} </a>
@@ -52,7 +53,7 @@
 
                        
 
-                        <li><a href="#"><i class="fal fa-gem"></i> View All Categories</a></li>
+                       
                     </ul>
 
                     <ul  class="wsus__menu_item">
@@ -124,9 +125,9 @@
                             </div>
                         </li>
                         <li><a href="{{route('login')}}">vendor</a></li>
-                        <li><a href="blog.html">blog</a></li>
-                        <li><a href="daily_deals.html">campain</a></li>
-                        <li class="wsus__relative_li"><a href="#">pages <i class="fas fa-caret-down"></i></a>
+                        <li><a href="{{route('login')}}">Knowdge Base</a></li>
+                        {{-- <li><a href="daily_deals.html">campain</a></li> --}}
+                        {{-- <li class="wsus__relative_li"><a href="#">pages <i class="fas fa-caret-down"></i></a>
                             <ul class="wsus__menu_droapdown">
                                 <li><a href="404.html">404</a></li>
                                 <li><a href="faqs.html">faq</a></li>
@@ -142,14 +143,14 @@
                                 <li><a href="product_category.html">product category</a></li>
                                 <li><a href="brands.html">brands</a></li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <li><a href="{{route('frontend.show-collection-points.index')}}">Collection Points</a></li>
-                        <li><a href="daily_deals.html">daily deals</a></li>
+                        {{-- <li><a href="daily_deals.html">daily deals</a></li> --}}
                     </ul>
 
                     <ul  class="wsus__menu_item wsus__menu_item_right">
-                        <li><a href="contact.html">contact</a></li>
-                        <li><a href="dsahboard.html">my account</a></li>
+                        {{-- <li><a href="contact.html">contact</a></li> --}}
+                        <li><a href="{{route('login')}}">my account</a></li>
                         <li><a href="{{route('login')}}">login</a></li>
                     </ul>
                 </div>
@@ -232,8 +233,8 @@
                             </div>
                         </li>
                         <li><a href="vendor.html">vendor</a></li>
-                        <li><a href="blog.html">blog</a></li>
-                        <li><a href="daily_deals.html">campain</a></li>
+                        {{-- <li><a href="blog.html">blog</a></li> --}}
+                        {{-- <li><a href="daily_deals.html">campain</a></li>
                         <li><a href="#" class="accordion-button collapsed" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseThree101" aria-expanded="false"
                                 aria-controls="flush-collapseThree101">pages</a>
@@ -252,12 +253,12 @@
                                     </ul>
                                 </div>
                             </div>
-                        </li>
-                        <li><a href="track_order.html">track order</a></li>
-                        <li><a href="daily_deals.html">daily deals</a></li>
+                        </li> --}}
+                        {{-- <li><a href="track_order.html">track order</a></li>
+                        <li><a href="daily_deals.html">daily deals</a></li> --}}
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-</section>
+   </section>

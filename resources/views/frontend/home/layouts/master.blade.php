@@ -26,6 +26,7 @@
 
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <!-- <link rel="stylesheet" href="css/rtl.css"> -->
 </head>
 
@@ -145,6 +146,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!--classycountdown js-->
     <script src="{{asset('frontend/js/jquery.classycountdown.js')}}"></script>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <!--main/custom js-->
     <script src="{{asset('frontend/js/main.js')}}"></script>

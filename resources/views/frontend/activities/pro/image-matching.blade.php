@@ -62,7 +62,7 @@
                     </div>
                     <div class="d-flex gap-2 mb-3">
                         {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
-                        <a href="" class="btn btn-secondary">Next Activity</a>
+                        <a href="{{route('user.activities.pro.puzzle')}}" class="btn btn-secondary">Next Activity</a>
                         <a href="{{ route('user.dashboard') }}" class="btn btn-secondary">Go to Dashboard</a>
                     </div>
                 </div>

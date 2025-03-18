@@ -21,7 +21,11 @@
         @endforeach
     </div>
 
-    <button class="btn btn-success mt-3" id="checkAnswersButton">Check Answers</button>
+    <div>
+        <button class="btn btn-success mt-3" id="checkAnswersButton">Check Answers</button>
+        <a href="{{ route('user.dashboard') }}" class="btn btn-secondary mt-3">Go to Dashboard</a>
+    </div>
+    
 </div>
 
 <style>

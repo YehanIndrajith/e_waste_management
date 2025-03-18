@@ -10,7 +10,7 @@
                         +8896254857456</a>
                     <a class="action" href="mailto:example@gmail.com"><i class="far fa-envelope"></i>
                         example@gmail.com</a>
-                    <p><i class="fal fa-map-marker-alt"></i> San Francisco City Hall, San Francisco, CA</p>
+                    <p><i class="fal fa-map-marker-alt"></i> E Waste Management, Sri Lanka</p>
                     <ul class="wsus__footer_social">
                         <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
                         <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
@@ -24,13 +24,13 @@
                 <div class="wsus__footer_content">
                     <h5>Company</h5>
                     <ul class="wsus__footer_menu">
-                        <li><a href="#"><i class="fas fa-caret-right"></i> About Us</a></li>
-                        <li><a href="#"><i class="fas fa-caret-right"></i> Team Member</a></li>
-                        <li><a href="#"><i class="fas fa-caret-right"></i> Career</a></li>
-                        <li><a href="#"><i class="fas fa-caret-right"></i> Contact Us</a></li>
-                        <li><a href="#"><i class="fas fa-caret-right"></i> Affilate</a></li>
-                        <li><a href="#"><i class="fas fa-caret-right"></i> Order History</a></li>
-                        <li><a href="#"><i class="fas fa-caret-right"></i> Team Member</a></li>
+                        <li><a href="#"><i class="fas fa-caret-right"></i> Vendor</a></li>
+                        <li><a href="#"><i class="fas fa-caret-right"></i> Knowledge Base</a></li>
+                        <li><a href="#"><i class="fas fa-caret-right"></i> Hot Selling</a></li>
+                        <li><a href="#"><i class="fas fa-caret-right"></i> Donations</a></li>
+                        <li><a href="#"><i class="fas fa-caret-right"></i> Detect Your E waste</a></li>
+                        <li><a href="#"><i class="fas fa-caret-right"></i> collection Points</a></li>
+                        {{-- <li><a href="#"><i class="fas fa-caret-right"></i> Team Member</a></li> --}}
                     </ul>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-xl-4 col-sm-7 col-md-8 col-lg-5">
+            {{-- <div class="col-xl-4 col-sm-7 col-md-8 col-lg-5">
                 <div class="wsus__footer_content wsus__footer_content_2">
                     <h3>Subscribe To Our Newsletter</h3>
                     <p>Get all the latest information on Events, Sales and Offers.
@@ -62,7 +62,7 @@
                         <img src="images/credit2.png" alt="card" class="img-fluid">
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     <div style="background-color: rgb(34, 134, 57)" class="wsus__footer_bottom">

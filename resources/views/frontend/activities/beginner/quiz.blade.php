@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <div class="container mb-3">
     <h3 class="mt-3">Beginner Level Quiz</h3>
     <form action="{{ route('user.activities.beginner.quiz.checkAnswers') }}" method="POST">

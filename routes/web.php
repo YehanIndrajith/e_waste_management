@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\CollectionPointController;
 use App\Http\Controllers\BeginnerQuizController;
+use App\Http\Controllers\EwasteController;
 use App\Http\Controllers\Frontend\FrontendCollectionPointController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\ImageMatchingController;
@@ -50,11 +51,19 @@ Route::post('admin/login', [AdminController::class, 'login']);
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 
+
+
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile');
 
-
+    Route::prefix('quiz/second-phase')->name('quiz.second-phase.')->group(function () {
+        Route::any('/', [SecondPhaseQuizController::class, 'showQuiz'])->name('show');
+        Route::post('/submit', [SecondPhaseQuizController::class, 'submitQuiz'])->name('submit');
+        Route::get('/result', function () {
+            return view('frontend.activities.quiz-results');
+        })->name('result');
+    });
 
 
     Route::prefix('activities')->name('activities.')->group(function () {
@@ -83,8 +92,8 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
               Route::post('quiz/submit', [BeginnerQuizController::class, 'checkAnswers'])->name('quiz.checkAnswers');
 
               Route::get('puzzle', [PuzzleGameController::class, 'showBeginnerPuzzle'])->name('puzzle');
-              Route::get('second-phase-quiz', [SecondPhaseQuizController::class, 'showBeginnerQuiz'])->name('second-phase.quiz');
-              Route::post('second-phase-quiz/submit', [SecondPhaseQuizController::class, 'submitBeginnerQuiz'])->name('second-phase.quiz.submit');
+            //   Route::get('second-phase-quiz', [SecondPhaseQuizController::class, 'showBeginnerQuiz'])->name('second-phase.quiz');
+            // // Route::post('second-phase-quiz/submit', [SecondPhaseQuizController::class, 'submitBeginnerQuiz'])->name('second-phase.quiz.results');
             
           });
       });
@@ -98,10 +107,16 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
             // Image Matching Routes
             Route::get('image-matching', [IntermediateImageMatchingQuizController::class, 'showImageMatchingForm'])->name('image-matching');
 
-            Route::get('puzzle', [PuzzleGameController::class, 'showIntermediatePuzzle'])->name('puzzle');
+            // Route::get('puzzle', [PuzzleGameController::class, 'showIntermediatePuzzle'])->name('puzzle');
 
-            Route::get('second-phase-quiz', [SecondPhaseQuizController::class, 'showIntermediateQuiz'])->name('second-phase.quiz');
-            Route::post('second-phase-quiz/submit', [SecondPhaseQuizController::class, 'submitIntermediateQuiz'])->name('second-phase.quiz.submit');
+            // Route::get('second-phase-quiz', [SecondPhaseQuizController::class, 'showIntermediateQuiz'])->name('second-phase.quiz');
+            // Route::post('second-phase-quiz/submit', [SecondPhaseQuizController::class, 'submitIntermediateQuiz'])->name('second-phase.quiz.results');
+        });
+
+        Route::middleware(['auth', 'verified'])->prefix('user/activities')->name('user.activities.')->group(function () {
+            Route::prefix('intermediate')->name('intermediate.')->group(function () {
+                Route::get('puzzle', [PuzzleGameController::class, 'showIntermediatePuzzle'])->name('puzzle');
+            });
         });
 
         //pro
@@ -113,15 +128,15 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
 
             Route::get('puzzle', [PuzzleGameController::class, 'showProPuzzle'])->name('puzzle');
 
-            Route::get('second-phase-quiz', [SecondPhaseQuizController::class, 'showProQuiz'])->name('second-phase.quiz');
-            Route::post('second-phase-quiz/submit', [SecondPhaseQuizController::class, 'submitProQuiz'])->name('second-phase.quiz.submit');
+            // Route::get('second-phase-quiz', [SecondPhaseQuizController::class, 'showProQuiz'])->name('second-phase.quiz');
+            // Route::post('second-phase-quiz/submit', [SecondPhaseQuizController::class, 'submitProQuiz'])->name('second-phase.quiz.submit');
         });
         
     
         
     });
 
-    
+    // Route::get('quiz/results/{level}/{score}', [SecondPhaseQuizController::class, 'showResults'])->name('quiz.results');
     
 
       // Collection Point Routes
@@ -130,6 +145,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
    Route::match(['get', 'post'], 'collection-points/nearest', [CollectionPointController::class, 'findNearest'])->name('collectionPoints.nearest');
  //  Route::post('collection-points/nearest', [CollectionPointController::class, 'findNearest'])->name('collectionPoints.nearest');
 });
+
 
 
 
@@ -144,3 +160,10 @@ Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProd
 Route::get('/show-collection-points', [FrontendCollectionPointController::class, 'index'])->name('frontend.show-collection-points.index');
 
 Route::match(['get', 'post'], 'show-collection-points/nearest', [FrontendCollectionPointController::class, 'findNearest'])->name('frontend.show-collection-points.nearest');
+
+// Route::get('/detect', function () {
+//     return view('frontend.home.detect');
+// })->name('detect.view');
+
+Route::post('/detect-image', [EwasteController::class, 'detectEwaste'])
+    ->name('detect.image');

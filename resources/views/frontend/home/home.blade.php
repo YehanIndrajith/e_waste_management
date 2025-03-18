@@ -183,7 +183,7 @@
     <!--============================
         SINGLE BANNER START
     ==============================-->
-    @include('frontend.home.sections.single-banner')
+    {{-- @include('frontend.home.sections.single-banner') --}}
     <!--============================
         SINGLE BANNER END  
     ==============================-->
@@ -210,7 +210,7 @@
     <!--============================
         ELECTRONIC PART START  
     ==============================-->
-    @include('frontend.home.sections.category-product-slider-two')
+    {{-- @include('frontend.home.sections.category-product-slider-two') --}}
     <!--============================
         ELECTRONIC PART END  
     ==============================-->
@@ -241,7 +241,7 @@
     <!--============================
       HOME SERVICES START
     ==============================-->
-    @include('frontend.home.sections.services')
+    {{-- @include('frontend.home.sections.services') --}}
     <!--============================
         HOME SERVICES END
     ==============================-->
@@ -250,7 +250,7 @@
     <!--============================
         HOME BLOGS START
     ==============================-->
-   @include('frontend.home.sections.blog')
+   {{-- @include('frontend.home.sections.blog') --}}
     <!--============================
         HOME BLOGS END
     ==============================-->

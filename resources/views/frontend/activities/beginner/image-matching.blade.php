@@ -3,6 +3,8 @@
 @section('content')
 <section id="image_matching">
     <div class="container">
+    
+
         <h2 class="text-center mt-2">Match the E-Waste Items to Their Categories</h2>
         <p class="text-center">Drag the images to the correct category.Ones you placed an image in a dropbox you won't be allowed to change it untill you finish the game.</p>
 

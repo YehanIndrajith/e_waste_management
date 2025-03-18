@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="container mb-4">
-    <h2 class="text-center mt-4">Second Phase Quiz - {{ ucfirst(request()->segment(3)) }} Level</h2>
-    <form action="{{ route('user.activities.' . request()->segment(3) . '.second-phase.quiz.submit') }}" method="POST">
+    <h2 class="text-center mt-4">Second Phase Quiz - {{ ucfirst(request()->segment(3)) }} Level Wise</h2>
+    <form action="{{ route('user.quiz.second-phase.submit') }}" method="POST">
+
         @csrf
         @foreach($questions as $index => $question)
             <div class="mb-4 quiz-question">
@@ -25,4 +26,3 @@
         </div>
     </form>
 </div>
-@endsection

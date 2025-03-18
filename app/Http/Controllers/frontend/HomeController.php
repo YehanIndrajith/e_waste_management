@@ -18,6 +18,7 @@ class HomeController extends Controller
         $sellingCategory = HomePageSetting::where('key', 'selling_category_section')->first();
 
         $typeBaseProducts = $this->getTypeBaseProduct();
+        $categoryProductSliderSectionOne = HomePageSetting::where('key', 'product_slider_section_one')->first();
 
         // Get Top Performers for each level
         $topPerformers = $this->getTopPerformersByLevel();
@@ -26,7 +27,8 @@ class HomeController extends Controller
             'sliders',
             'sellingCategory',
             'typeBaseProducts',
-            'topPerformers'
+            'topPerformers',
+            'categoryProductSliderSectionOne'
         ));
     }
 

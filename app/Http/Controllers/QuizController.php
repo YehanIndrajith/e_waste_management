@@ -12,17 +12,21 @@ class QuizController extends Controller
 {
     public function index()
     {
+        $existingResult = Quiz1Result::where('username', Auth::user()->username)->first();
+
+        if ($existingResult) {
+            // If the user has already taken the quiz, redirect or display a message
+            return redirect()->route('user.dashboard')->with('error', 'You have already completed this quiz.');
+        }
+         
+
         $quizzes = Quiz::all();
         return view('frontend.quiz.index', compact('quizzes'));
     }
 
     public function checkAnswers(Request $request)
-    {
-         $user = Auth::user();
-
-        if (Quiz1Result::where('username', $user->name)->exists()) {
-            return redirect()->route('user.dashboard')->with('error', 'You have already attempted this quiz.');
-        }
+    {  
+     
 
         // Validate the request data
         $request->validate([

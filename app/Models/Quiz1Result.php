@@ -16,4 +16,5 @@ class Quiz1Result extends Model
         'level',
         'marks',
     ];
+
 }

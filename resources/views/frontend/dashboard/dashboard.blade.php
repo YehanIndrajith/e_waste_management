@@ -169,15 +169,155 @@
                     <div>Welcome, {{ Auth::user()->name }}</div>
                 </div>
 
+                <!-- Add this section in your dashboard blade file -->
+<div class="instructions-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="instructions-card">
+                    <h3 class="instructions-title">
+                        <i class="fas fa-info-circle"></i> Learning Pathway Guide
+                    </h3>
+                    <div class="instructions-content">
+                        <div class="instruction-step">
+                            <div class="step-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <div class="step-content">
+                                <h4>📌 Take the Pre-Quiz</h4>
+                                <p>This helps assess your current knowledge of e-waste management.</p>
+                            </div>
+                        </div>
+
+                        <div class="instruction-step">
+                            <div class="step-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <div class="step-content">
+                                <h4>📌 Learn & Explore</h4>
+                                <p>Engage with the provided learning materials, play interactive games, and enhance your understanding.</p>
+                            </div>
+                        </div>
+
+                        <div class="instruction-step">
+                            <div class="step-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="step-content">
+                                <h4>📌 Take the Post-Quiz</h4>
+                                <p>Once you've completed the learning phase, click "Post Quiz" to test your improved knowledge. Your score will show how much you've learned!</p>
+                            </div>
+                        </div>
+
+                        <div class="instruction-step">
+                            <div class="step-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="step-content">
+                                <h4>📌 Track Your Progress</h4>
+                                <p>Aim for a higher score and become an e-waste awareness champion!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .instructions-section {
+        margin-bottom: 30px;
+    }
+
+    .instructions-card {
+        background: linear-gradient(to right, #e0f2f1, #b2dfdb);
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+
+    .instructions-title {
+        color: #00695c;
+        border-bottom: 2px solid #4db6ac;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .instructions-title i {
+        margin-right: 15px;
+        color: #00897b;
+    }
+
+    .instructions-content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .instruction-step {
+        display: flex;
+        align-items: start;
+        background-color: rgba(255,255,255,0.6);
+        border-radius: 10px;
+        padding: 15px;
+        transition: all 0.3s ease;
+    }
+
+    .instruction-step:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .step-icon {
+        background: linear-gradient(135deg, #00695c, #4db6ac);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+    }
+
+    .step-content h4 {
+        color: #00695c;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+    }
+
+    .step-content p {
+        color: #37474f;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+        .instructions-content {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
                 <div class="quiz-navigation">
                     <a href="{{route('user.quiz.index')}}" class="quiz-nav-item red">
                         <i class="fas fa-book-reader"></i>
                         <span class="txt-color">Pre Quiz</span>
                     </a>
-                    <a href="{{ route('user.activities.beginner.second-phase.quiz') }}" class="quiz-nav-item green">
+                    <a href="{{ route('user.quiz.second-phase.show') }}" class="quiz-nav-item green">
                         <i class="fas fa-book-reader"></i>
                         <span class="txt-color">Post Quiz</span>
                     </a>
+                    {{-- <a href="{{ route('user.activities.intermediate.second-phase.quiz') }}" class="quiz-nav-item green">
+                        <i class="fas fa-book-reader"></i>
+                        <span class="txt-color">Post Quiz : Intermediate</span>
+                    </a>
+                    <a href="{{ route('user.activities.pro.second-phase.quiz') }}" class="quiz-nav-item green">
+                        <i class="fas fa-book-reader"></i>
+                        <span class="txt-color">Post Quiz : Pro</span>
+                    </a> --}}
                     <a href="{{ route('user.activities.beginner.quiz') }}" class="quiz-nav-item sky">
                         <i class="fas fa-unlock-alt"></i>
                         <span class="txt-color">Beginner Level</span>
@@ -203,6 +343,10 @@
                         <span class="txt-color">PUZZLE</span>
                     </a>
                 </div>
+
+                 {{-- <a href="{{ route('user.quiz.second-phase.show') }}">Take the Quiz</a> --}}
+
+
 
                 <!-- Pre-Quiz Results Section -->
                 <div class="quiz-results-section">

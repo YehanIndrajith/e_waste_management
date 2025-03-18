@@ -6,7 +6,7 @@
   <meta name="viewport"
   content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <title>One Shop || e-Commerce HTML Template</title>
+  <title>E- waste management system</title>
   {{-- <link rel="" type="image/png" href="#"> --}}
   <link rel="stylesheet" href="{{asset('frontend/css/all.min.css')}}">
   <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
@@ -36,12 +36,9 @@
   <!--=============================
     DASHBOARD MENU START
   ==============================-->
-  <div class="wsus__dashboard_menu">
-    <div class="wsusd__dashboard_user">
-      {{-- <img src="#" alt="img" class="img-fluid"> --}}
-      <p>E-Waste-Management</p>
-    </div>
-  </div>
+
+
+
   <!--=============================
     DASHBOARD MENU END
   ==============================-->
@@ -65,6 +62,7 @@
   <!--============================
     SCROLL BUTTON  END
   ==============================-->
+
 
 
   <!--jquery library js-->
@@ -114,6 +112,7 @@
         toastr.$error("{{$error}}")
        @endforeach
     @endif
+
 </script>
 </body>
 
