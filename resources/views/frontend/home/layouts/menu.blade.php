@@ -17,7 +17,7 @@
                     <div style="background-color: rgb(81, 187, 106)"  class="wsus_menu_category_bar">
                         <i class="far fa-bars"></i>
                     </div>
-                    <ul class="wsus_menu_cat_item show_home toggle_menu">
+                    {{-- <ul class="wsus_menu_cat_item show_home toggle_menu">
                        
                     
                         @foreach ($categories as $category)
@@ -54,11 +54,11 @@
                        
 
                        
-                    </ul>
+                    </ul> --}}
 
                     <ul  class="wsus__menu_item">
-                        <li><a class="active" href="index.html">home</a></li>
-                        <li><a href="product_grid_view.html">shop <i class="fas fa-caret-down"></i></a>
+                        <li><a class="active" href="{{route('home')}}">home</a></li>
+                        {{-- <li><a href="product_grid_view.html">shop <i class="fas fa-caret-down"></i></a>
                             <div class="wsus__mega_menu">
                                 <div class="row">
                                     <div class="col-xl-3 col-lg-3">
@@ -123,7 +123,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </li> --}}
                         <li><a href="{{route('login')}}">vendor</a></li>
                         <li><a href="{{route('login')}}">Knowdge Base</a></li>
                         {{-- <li><a href="daily_deals.html">campain</a></li> --}}
@@ -145,13 +145,17 @@
                             </ul>
                         </li> --}}
                         <li><a href="{{route('frontend.show-collection-points.index')}}">Collection Points</a></li>
+                        <li><a href="{{ route('home') }}#large-banner">E-waste Detector</a></li>
+                        <li><a href="{{ route('repair.shops') }}">Repair Shops</a></li>
+
                         {{-- <li><a href="daily_deals.html">daily deals</a></li> --}}
                     </ul>
 
                     <ul  class="wsus__menu_item wsus__menu_item_right">
                         {{-- <li><a href="contact.html">contact</a></li> --}}
-                        <li><a href="{{route('login')}}">my account</a></li>
+                        {{-- <li><a href="{{route('login')}}">my account</a></li> --}}
                         <li><a href="{{route('login')}}">login</a></li>
+                        <li><a href="{{route('user.dashboard')}}">Dashboard</a></li>
                     </ul>
                 </div>
             </div>
@@ -167,7 +171,7 @@
 
         <li><a href="compare.html"><i class="far fa-random"></i> </i><span>3</span></a></li>
     </ul>
-    <form>
+    <form action="">
         <input type="text" placeholder="Search">
         <button type="submit"><i class="far fa-search"></i></button>
     </form>

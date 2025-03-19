@@ -12,15 +12,14 @@ class SecondPhaseQuizController extends Controller
     public function showQuiz()
     {
         $user = Auth::user();
-    
+
         $result = Quiz1Result::where('username', $user->username)
             ->orderBy('marks', 'desc')
             ->first();
 
-            if ($result) {
-                // If the user has already taken the quiz, redirect or display a message
-                return redirect()->route('user.dashboard')->with('error', 'You have already completed this quiz.');
-            }
+            // if ($result) {
+            //     return redirect()->route('user.dashboard')->with('error', 'You have already completed this quiz.');
+            // }
     
         if ($result) {
             if ($result->marks <= 4) {
@@ -37,18 +36,37 @@ class SecondPhaseQuizController extends Controller
 
     public function showBeginnerQuiz()
     {
+        $user = Auth::user();
+
+        $result = QuizScore::where('user_id', $user->id)
+        ->orderBy('score', 'desc')
+        ->first();
+
+        if ($result) {
+            // If the user has already taken the quiz, redirect or display a message
+            return redirect()->route('user.dashboard')->with('error', 'You have already completed this quiz.');
+        }
+
         $questions = $this->getBeginnerQuestions();
         return view('frontend.activities.beginner.second-phase-quiz', compact('questions'));
     }
 
     public function showIntermediateQuiz()
     {
+        $user = Auth::user();
+        $result = QuizScore::where('user_id', $user->id)
+        ->first();
+
         $questions = $this->getIntermediateQuestions();
         return view('frontend.activities.intermediate.second-phase-quiz', compact('questions'));
     }
 
     public function showProQuiz()
     {
+        $user = Auth::user();
+        $result = QuizScore::where('user_id', $user->id)
+        ->first();
+
         $questions = $this->getProQuestions();
         return view('frontend.activities.pro.second-phase-quiz', compact('questions'));
     }

@@ -118,14 +118,14 @@
           </a>
       </li>
       <li>
-          <a href="{{ route('user.collectionPoints.index') }}">
+          {{-- <a href="{{ route('user.collectionPoints.index') }}">
               <i class="fal fa-map-marker-alt"></i> Collection Points
-          </a>
+          </a> --}}
       </li>
       <li>
-          <a href="{{ route('user.activities.beginner.puzzle') }}">
+          {{-- <a href="{{ route('user.activities.beginner.puzzle') }}">
               <i class="fal fa-puzzle-piece"></i> Puzzle
-          </a>
+          </a> --}}
       </li>
       <li>
           <a href="{{ route('user.profile') }}">

@@ -1,5 +1,5 @@
 <!-- resources/views/frontend/home/sections/large-banner.blade.php -->
-
+<section id="large-banner"></section>
 <div class="large-banner">
     <!-- E-Waste Detection Form -->
     <div class="container mt-5">

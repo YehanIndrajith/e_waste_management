@@ -334,14 +334,14 @@
                         <i class="fas fa-user-shield"></i>
                         <span class="txt-color">Profile</span>
                     </a>
-                    <a href="{{ route('user.collectionPoints.index') }}" class="quiz-nav-item purple">
+                    {{-- <a href="{{ route('user.collectionPoints.index') }}" class="quiz-nav-item purple">
                         <i class="fal fa-map-marker-alt"></i>
                         <span class="txt-color">Collection Points</span>
-                    </a>
-                    <a href="{{ route('user.activities.beginner.puzzle') }}" class="quiz-nav-item purple">
+                    </a> --}}
+                    {{-- <a href="{{ route('user.activities.beginner.puzzle') }}" class="quiz-nav-item purple">
                         <i class="fal fa-puzzle-piece"></i>
                         <span class="txt-color">PUZZLE</span>
-                    </a>
+                    </a> --}}
                 </div>
 
                  {{-- <a href="{{ route('user.quiz.second-phase.show') }}">Take the Quiz</a> --}}

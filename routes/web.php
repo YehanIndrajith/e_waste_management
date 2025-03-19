@@ -19,6 +19,7 @@ use App\Http\Controllers\IntermediateQuizController;
 use App\Http\Controllers\ProImageMatchingController;
 use App\Http\Controllers\ProTriviaQuizController;
 use App\Http\Controllers\PuzzleGameController;
+use App\Http\Controllers\RepairShopController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SecondPhaseQuizController;
 use App\Models\IntermediateQuiz;
@@ -161,6 +162,7 @@ Route::get('/show-collection-points', [FrontendCollectionPointController::class,
 
 Route::match(['get', 'post'], 'show-collection-points/nearest', [FrontendCollectionPointController::class, 'findNearest'])->name('frontend.show-collection-points.nearest');
 
+Route::get('/repair-shops', [RepairShopController::class, 'show'])->name('repair.shops');
 // Route::get('/detect', function () {
 //     return view('frontend.home.detect');
 // })->name('detect.view');

@@ -1,10 +1,10 @@
-<footer style="background-color: rgb(12, 188, 53)" class="footer_2">
+<footer style="background-color: rgb(12, 188, 53); color: white" class="footer_2">
     <div class="container">
         <div class="row justify-content-between">
-            <div class="col-xl-3 col-sm-7 col-md-6 col-lg-3">
+            <div class="col-md-4">
                 <div class="wsus__footer_content">
                     <a class="wsus__footer_2_logo" href="#">
-                        <img src="images/logo_2.png" alt="logo">
+                        {{-- <img src="images/logo_2.png" alt="logo"> --}}
                     </a>
                     <a class="action" href="callto:+8896254857456"><i class="fas fa-phone-alt"></i>
                         +8896254857456</a>
@@ -20,49 +20,32 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-xl-2 col-sm-5 col-md-4 col-lg-2">
+            <div class="col-md-4">
                 <div class="wsus__footer_content">
-                    <h5>Company</h5>
-                    <ul class="wsus__footer_menu">
-                        <li><a href="#"><i class="fas fa-caret-right"></i> Vendor</a></li>
-                        <li><a href="#"><i class="fas fa-caret-right"></i> Knowledge Base</a></li>
-                        <li><a href="#"><i class="fas fa-caret-right"></i> Hot Selling</a></li>
-                        <li><a href="#"><i class="fas fa-caret-right"></i> Donations</a></li>
-                        <li><a href="#"><i class="fas fa-caret-right"></i> Detect Your E waste</a></li>
-                        <li><a href="#"><i class="fas fa-caret-right"></i> collection Points</a></li>
-                        {{-- <li><a href="#"><i class="fas fa-caret-right"></i> Team Member</a></li> --}}
-                    </ul>
+                   
                 </div>
             </div>
-            <div class="col-xl-2 col-sm-5 col-md-4 col-lg-2">
-                <div class="wsus__footer_content">
-                    <h5>Company</h5>
+            <div class="col-md-4">
+                {{-- <div class="wsus__footer_content">
+                    <h5>Support</h5>
                     <ul class="wsus__footer_menu">
-                        <li><a href="#"><i class="fas fa-caret-right"></i> About Us</a></li>
-                        <li><a href="#"><i class="fas fa-caret-right"></i> Team Member</a></li>
                         <li><a href="#"><i class="fas fa-caret-right"></i> Career</a></li>
                         <li><a href="#"><i class="fas fa-caret-right"></i> Contact Us</a></li>
-                        <li><a href="#"><i class="fas fa-caret-right"></i> Affilate</a></li>
-                        <li><a href="#"><i class="fas fa-caret-right"></i> Order History</a></li>
-                        <li><a href="#"><i class="fas fa-caret-right"></i> Team Member</a></li>
+                        <li><a href="#"><i class="fas fa-caret-right"></i> Affiliate</a></li>
+                       
                     </ul>
-                </div>
+                </div> --}}
+                <h5>Quick Links</h5>
+                <ul class="wsus__footer_menu">
+                    <li><a class="active" href="{{route('home')}}">home</a></li>
+                    <li><a href="{{route('login')}}"><i class="fas fa-caret-right"></i> Vendor</a></li>
+                    <li><a href="{{route('login')}}"><i class="fas fa-caret-right"></i> Knowledge Base</a></li>
+                    <li><a href="#"><i class="fas fa-caret-right"></i> Hot Selling</a></li>
+                    <li><a href="{{ route('home') }}#wsus__hot_deals"><i class="fas fa-caret-right"></i> Products</a></li>
+                    <li><a href="{{ route('home') }}#large-banner"><i class="fas fa-caret-right"></i> E-Waste Detector</a></li>
+                    <li><a href="{{route('frontend.show-collection-points.index')}}"><i class="fas fa-caret-right"></i> Collection Points</a></li>
+                </ul>
             </div>
-            {{-- <div class="col-xl-4 col-sm-7 col-md-8 col-lg-5">
-                <div class="wsus__footer_content wsus__footer_content_2">
-                    <h3>Subscribe To Our Newsletter</h3>
-                    <p>Get all the latest information on Events, Sales and Offers.
-                        Get all the latest information on Events.</p>
-                    <form>
-                        <input type="text" placeholder="Search...">
-                        <button type="submit" class="common_btn">subscribe</button>
-                    </form>
-                    <div class="footer_payment">
-                        <p>We're using safe payment for :</p>
-                        <img src="images/credit2.png" alt="card" class="img-fluid">
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </div>
     <div style="background-color: rgb(34, 134, 57)" class="wsus__footer_bottom">
