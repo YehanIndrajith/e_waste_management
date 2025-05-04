@@ -423,14 +423,14 @@
             // Collect form data for eco rating
             const data = {
                 _token: "{{ csrf_token() }}", // Include CSRF token for security
-                item: $('#item').val(), // Selected item
+                product: $('#item').val(), // Selected item
                 age: $('#product-age').val(), // Product age
                 parts_replaced: $('#part-replacement').val(), // Whether parts were replaced
                 parts_count: $('#parts-count').val(), // Number of parts replaced
-                quality_parts: $('#quality-parts').val(), // Quality of replaced parts
-                replacer: $('#replacer').val(), // Who replaced the parts
-                functional_status: $('#functional-status').val(), // Whether the product is functional
-                issue_type: $('#issue-type').val(), // Type of performance issues
+                quality_parts: $('#quality-parts').val() ? $('#quality-parts').val()[0] : '', // Quality of replaced parts
+                replacer: $('#replacer').val() ? $('#replacer').val()[0] : '', // Who replaced the parts
+                functionality: $('#functional-status').val(), // Whether the product is functional
+                performance_issue: $('#issue-type').val(), // Type of performance issues
                 recyclable: $('#recyclable-materials').val(), // Recyclable materials
             };
 

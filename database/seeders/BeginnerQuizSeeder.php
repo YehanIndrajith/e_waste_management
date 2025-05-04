@@ -15,19 +15,19 @@ class BeginnerQuizSeeder extends Seeder
     {
         BeginnerQuiz::insert([
             [
-                'question' => 'What is e-waste?',
-                'option_a' => 'Plastic waste',
-                'option_b' => 'Electronic waste',
-                'option_c' => 'Organic waste',
-                'option_d' => 'None of the above',
-                'correct_option' => 'B',
+                'question' => 'Which of these household items is considered e-waste?',
+                'option_a' => 'Broken television',
+                'option_b' => 'Used paper napkin',
+                'option_c' => 'Empty soda can',
+                'option_d' => 'Old book',
+                'correct_option' => 'A',
             ],
             [
-                'question' => 'Which of the following is an example of e-waste?',
-                'option_a' => 'Old computers',
-                'option_b' => 'Newspapers',
-                'option_c' => 'Plastic bottles',
-                'option_d' => 'Food scraps',
+                'question' => 'What is the best way to handle e-waste at home?',
+                'option_a' => 'Separate and take it to an e-waste collection center',
+                'option_b' => 'Mix it with regular garbage',
+                'option_c' => 'Ignore it until it breaks completely',
+                'option_d' => 'Throw it into a river',
                 'correct_option' => 'A',
             ],
             [

@@ -197,108 +197,112 @@ class VendorProductController extends Controller
     {
         // Validate the incoming request data
         $request->validate([
-            'item' => 'required|string',                 // Q1: What is your item?
-            'age' => 'required|string',                  // Q2: How old is the item?
-            'parts_replaced' => 'required|string',       // Q3: Have any parts been replaced?
-            'parts_count' => 'nullable|string',          // Q4: How many parts were replaced?
-            'quality_parts' => 'nullable|array',         // Q5: Quality of replaced parts
-            'replacer' => 'nullable|array',              // Q6: Who performed the replacements?
-            'functional_status' => 'required|string',    // Q7: Is the item fully functional?
-            'issue_type' => 'nullable|string',           // Q8: Type of performance issues
-            'recyclable' => 'nullable|array',            // Q9: Recyclable materials
+            'product' => 'required|string', // Product type
+            'age' => 'required|string',   // Age range: 0-2, 2-5, 5-8, 8+
+            'parts_replaced' => 'required|string', // Yes/No
+            'quality_parts' => 'nullable|string', // Original/High/Low
+            'replacer' => 'nullable|string', // Authorized/Technician/Self
+            'functionality' => 'required|string', // Yes/No
+            'performance_issue' => 'nullable|string', // Minor/Moderate/Major
+            'recyclable' => 'nullable|array', // Array of materials
         ]);
-    
-     // Q2: Age score based on the item type
-$ageScores = [
-    'Mobile_Phones' => [ '0-3' => 10, '4-5' => 5, '6-8' => 2.5 ],
-    'Laptops' => [ '0-3' => 10, '4-5' => 5, '6-8' => 2.5 ],
-    'Smartwatches' => [ '0-3' => 10, '4-5' => 5, '6-8' => 2.5 ],
-    'Refrigerators' => [ '0-3' => 10, '4-5' => 7.5, '6-8' => 5 ],
-    'Washing_Machines' => [ '0-3' => 10, '4-5' => 7.5, '6-8' => 5 ],
-    'Microwaves' => [ '0-3' => 10, '4-5' => 7.5, '6-8' => 5 ],
-    'Toasters' => [ '0-3' => 10, '4-5' => 7.5, '6-8' => 5 ],
-    'Air_Conditioners' => [ '0-3' => 10, '4-5' => 7.5, '6-8' => 5 ],
-    'Blenders' => [ '0-3' => 10, '4-5' => 7.5, '6-8' => 5 ],
-    'Vacuum_Cleaners' => [ '0-3' => 10, '4-5' => 7.5, '6-8' => 5 ],
-    'Rice_Cookers' => [ '0-3' => 10, '4-5' => 7.5, '6-8' => 5 ],
-    'Electric_Kettles' => [ '0-3' => 10, '4-5' => 7.5, '6-8' => 5 ],
-    'Televisions' => [ '0-3' => 10, '4-5' => 7.5, '6-8' => 5 ],
-    'DVD_Blu_ray_Players' => [ '0-3' => 10, '4-5' => 5, '6-8' => 2.5 ],
-    'Speakers' => [ '0-3' => 10, '4-5' => 5, '6-8' => 2.5 ],
-    'Printers' => [ '0-3' => 10, '4-5' => 5, '6-8' => 2.5 ],
-    'Scanners' => [ '0-3' => 10, '4-5' => 5, '6-8' => 2.5 ],
-    'Projectors' => [ '0-3' => 10, '4-5' => 5, '6-8' => 2.5 ],
-    'Fax_Machines' => [ '0-3' => 10, '4-5' => 5, '6-8' => 2.5 ],
-    'Fans' => [ '0-3' => 10, '4-5' => 7.5, '6-8' => 5 ],
-    'Hair_Dryers' => [ '0-3' => 10, '4-5' => 7.5, '6-8' => 5 ],
-    'Electric_Shavers' => [ '0-3' => 10, '4-5' => 7.5, '6-8' => 5 ],
-    'Electric_Clocks' => [ '0-3' => 10, '4-5' => 7.5, '6-8' => 5 ],
-    'Dash_Cameras' => [ '0-3' => 10, '4-5' => 7.5, '6-8' => 5 ],
-    'Car_Audio_Systems' => [ '0-3' => 10, '4-5' => 7.5, '6-8' => 5 ],
-    'Headphones' => [ '0-3' => 10, '4-5' => 5, '6-8' => 2.5 ],
-    'Portable_Chargers' => [ '0-3' => 10, '4-5' => 5, '6-8' => 2.5 ],
-];
 
-    
-        $ageScore = $ageScores[$request->item][$request->age] ?? 0;
-    
-        // Parts replaced (Q3-Q6)
-        $replacementScore = 0;
-        if ($request->parts_replaced === 'No') {
-            $replacementScore += 10; // No parts replaced
-        } else {
-            // Q4: How many parts replaced
-            $partsCountScores = ['1-2' => 3, '2-4' => 2, '3-6' => 1];
-            $partsCountScore = $partsCountScores[$request->parts_count] ?? 0;
-    
-            // Q5: Quality of replaced parts
-            $qualityPartsScores = ['Original' => 5, 'High' => 3, 'Low' => 2];
-            $qualityPartsScore = collect($request->quality_parts)->sum(fn($quality) => $qualityPartsScores[$quality] ?? 0);
-    
-            // Q6: Who performed replacements
-            $replacerScores = ['Authorized' => 5, 'Technician' => 3, 'Self' => 2];
-            $replacerScore = collect($request->replacer)->sum(fn($replacer) => $replacerScores[$replacer] ?? 0);
-    
-            $replacementScore += $partsCountScore + $qualityPartsScore + $replacerScore;
-        }
-    
-        // Functional Status (Q7-Q8)
-        $functionalScore = 0;
-        if ($request->functional_status === 'Yes') {
-            $functionalScore += 10; // Fully functional
-        } else {
-            // Q8: Type of performance issues
-            $issueScores = ['Minor' => 7, 'Moderate' => 4, 'Major' => 1];
-            $issueScore = $issueScores[$request->issue_type] ?? 0;
-            $functionalScore += $issueScore;
-        }
-    
-        // Recyclable materials (Q9)
-        $recyclableScores = [
-            'Metals' => 4,
-            'Plastics' => 3,
-            'Glass' => 2,
-            'Electronics' => 1,
+        // 1. Age (10 marks)
+        $ageTable = [
+            'Mobile phones' => [10, 7, 4, 1],
+            'Laptops & tablets' => [10, 7, 4, 1],
+            'Refrigerators' => [10, 8, 6, 4],
+            'Washing machines' => [10, 8, 6, 4],
+            'Microwaves' => [10, 8, 6, 4],
+            'Toasters' => [10, 8, 6, 4],
+            'Air conditioners' => [10, 8, 6, 4],
+            'Blenders' => [10, 8, 6, 4],
+            'Vacuum Cleaners' => [10, 8, 6, 4],
+            'Rice cookers' => [10, 8, 6, 4],
+            'Electric kettles' => [10, 8, 6, 4],
+            'Televisions' => [10, 8, 6, 4],
+            'DVD players' => [10, 7, 4, 1],
+            'Speakers' => [10, 7, 4, 1],
+            'Printers' => [10, 7, 4, 1],
+            'Scanners' => [10, 7, 4, 1],
+            'Projectors' => [10, 7, 4, 1],
+            'Fax machines' => [10, 7, 4, 1],
+            'Fans' => [10, 7, 4, 1],
         ];
-        $recyclableScore = collect($request->recyclable)->sum(fn($material) => $recyclableScores[$material] ?? 0);
-    
-        // Total score
-        $totalScore = $ageScore + $replacementScore + $functionalScore + $recyclableScore;
-    
-        // Normalize the score to 100
-        $normalizedScore = ($totalScore / 60) * 100;
-    
-        // Badge assignment
+        $ageRanges = ['0-2', '2-5', '5-8', '8+'];
+        $ageIdx = array_search($request->age, $ageRanges);
+        $ageScore = isset($ageTable[$request->product]) && $ageIdx !== false ? $ageTable[$request->product][$ageIdx] : 0;
+
+        // 2. Part Replacements (10 marks)
+        $partReplacementScore = 0;
+        if ($request->parts_replaced === 'No') {
+            // No parts replaced: use table by age
+            $noReplaceTable = [10, 10, 8, 6];
+            $partReplacementScore = $ageIdx !== false ? $noReplaceTable[$ageIdx] : 0;
+        } else {
+            // Q4: Quality of replaced parts (table by age)
+            $qualityTable = [
+                '0-2' => ['Original' => 5, 'High' => 4, 'Low' => 2],
+                '2-5' => ['Original' => 5, 'High' => 4, 'Low' => 2],
+                '5-8' => ['Original' => 4, 'High' => 3, 'Low' => 1],
+                '8+'  => ['Original' => 3, 'High' => 2, 'Low' => 1],
+            ];
+            $ageKey = $request->age;
+            $qualityScore = isset($qualityTable[$ageKey][$request->quality_parts]) ? $qualityTable[$ageKey][$request->quality_parts] : 0;
+            // Q5: Who performed
+            $whoScore = match ($request->replacer) {
+                'Authorized service center' => 5,
+                'Professional technician' => 4,
+                'Self-repaired' => 3,
+                default => 0,
+            };
+            $partReplacementScore = $qualityScore + $whoScore;
+        }
+
+        // 3. Functionality (10 marks)
+        if ($request->functionality === 'Yes') {
+            $functionalityScore = 10;
+        } else {
+            $functionalityScore = match ($request->performance_issue) {
+                'Minor' => 7,
+                'Moderate' => 4,
+                'Major' => 1,
+                default => 0,
+            };
+        }
+
+        // 4. Recyclability (10 marks)
+        $recyclableScores = [
+            'Metals' => 3,
+            'Plastics' => 1,
+            'Glass' => 2,
+            'Electronic components' => 4,
+        ];
+        $recyclabilityScore = 0;
+        if (is_array($request->recyclable)) {
+            foreach ($request->recyclable as $mat) {
+                $recyclabilityScore += $recyclableScores[$mat] ?? 0;
+            }
+        }
+
+        // 5. Weighted Overall Score
+        $finalScore = round(
+            ($ageScore * 0.4) +
+            ($partReplacementScore * 0.3) +
+            ($functionalityScore * 0.1) +
+            ($recyclabilityScore * 0.2), 1
+        );
+
+        // Badge assignment (new system)
         $badge = match (true) {
-            $normalizedScore <= 30 => 'Low (Red Badge)',
-            $normalizedScore <= 60 => 'Medium (Yellow Badge)',
+            $finalScore <= 3 => 'Low (Red Badge)',
+            $finalScore <= 7 => 'Medium (Yellow Badge)',
             default => 'High (Green Badge)',
         };
-    
-        // Return JSON response
+
         return response()->json([
-            'rating' => "Score: $normalizedScore, Badge: $badge",
-            'total_score' => $normalizedScore,
+            'rating' => "Score: $finalScore, Badge: $badge",
+            'total_score' => $finalScore,
             'badge' => $badge,
         ]);
     }

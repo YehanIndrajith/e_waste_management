@@ -25,6 +25,8 @@ class EwasteController extends Controller
             $imagePath = storage_path('app/public/uploads/' . $imageName);
             $image->move(storage_path('app/public/uploads/'), $imageName);
 
+            
+
             // Log the image path for debugging
             Log::info('Image uploaded: ' . $imagePath);
 
