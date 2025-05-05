@@ -207,10 +207,10 @@
                 <form id="ecoRatingForm">
                     @csrf
 
-                    <!-- Q1: What is your item? -->
+                    <!-- Q1: Product Type -->
                     <div class="form-group">
                         <label>What is your item?</label>
-                        <select id="item" name="item" class="form-control">
+                        <select id="product" name="product" class="form-control">
                             <option value="">Select</option>
                             <option value="Mobile_Phones">Mobile Phones</option>
                             <option value="Laptops">Laptops</option>
@@ -239,89 +239,76 @@
                             <option value="Clocks">Clocks (Smart Clocks, Alarm Clocks)</option>
                             <option value="DashCameras">Dash Cameras</option>
                             <option value="CarAudioSystems">Car Audio Systems</option>
+                            <!-- Add other product types here -->
                         </select>
                     </div>
 
-                    <!-- Q2: How old is the item? -->
+                    <!-- Q2: Age of the Product -->
                     <div class="form-group">
                         <label>How old is the item?</label>
-                        <select id="product-age" name="age" class="form-control">
-                            <option value="0-3">0-3 years</option>
-                            <option value="4-5">4-5 years</option>
-                            <option value="6-8">6-8+ years</option>
+                        <select id="age" name="age" class="form-control">
+                            <option value="0-2">0-2 years</option>
+                            <option value="2-5">2-5 years</option>
+                            <option value="5-8">5-8 years</option>
+                            <option value="8+">8+ years</option>
                         </select>
                     </div>
 
-                    <!-- Q3: Have any parts been replaced? -->
+                    <!-- Q3: Parts Replacement -->
                     <div class="form-group">
                         <label>Have any parts been replaced?</label>
-                        <select id="part-replacement" name="parts_replaced" class="form-control">
+                        <select id="parts_replaced" name="parts_replaced" class="form-control">
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
                     </div>
 
-                    <!-- Q4: How many parts were replaced? -->
-                    <div class="form-group" id="parts-count-group" style="display: none;">
-                        <label>If yes, how many parts were replaced?</label>
-                        <select id="parts-count" name="parts_count" class="form-control">
-                            <option value="1-2">1-2</option>
-                            <option value="2-4">2-4</option>
-                            <option value="3-6">3-6</option>
+                    <!-- Q4 and Q5: Replacement Details -->
+                    <div class="form-group" id="replacement-details" style="display: none;">
+                        <label>Quality of replaced parts</label>
+                        <select id="quality_parts" name="quality_parts" class="form-control">
+                            <option value="Original">Original</option>
+                            <option value="High">High Quality</option>
+                            <option value="Low">Low Quality</option>
                         </select>
-                    </div>
-
-                    <!-- Q5: Quality of replaced parts -->
-                    <div class="form-group" id="quality-parts-group" style="display: none;">
-                        <label>Quality of replaced parts:</label>
-                        <select id="quality-parts" name="quality_parts[]" class="form-control" multiple>
-                            <option value="Original">Original parts</option>
-                            <option value="High">High quality parts</option>
-                            <option value="Low">Low quality parts</option>
-                        </select>
-                    </div>
-
-                    <!-- Q6: Who performed the replacements? -->
-                    <div class="form-group" id="replacer-group" style="display: none;">
                         <label>Who performed the replacements?</label>
-                        <select id="replacer" name="replacer[]" class="form-control" multiple>
-                            <option value="Authorized">Authorized service center</option>
-                            <option value="Technician">Professional technician</option>
-                            <option value="Self">Self-repaired</option>
+                        <select id="replacer" name="replacer" class="form-control">
+                            <option value="Authorized service center">Authorized service center</option>
+                            <option value="Professional technician">Professional technician</option>
+                            <option value="Self-repaired">Self-repaired</option>
                         </select>
                     </div>
 
-                    <!-- Q7: Is the item fully functional? -->
+                    <!-- Q6: Functionality -->
                     <div class="form-group">
-                        <label>Is the item fully functional without issues?</label>
-                        <select id="functional-status" name="functional_status" class="form-control">
+                        <label>Is the item fully functional?</label>
+                        <select id="functionality" name="functionality" class="form-control">
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
                     </div>
 
-                    <!-- Q8: Type of performance issues -->
-                    <div class="form-group" id="issues-group" style="display: none;">
-                        <label>If no, what issues does the item have?</label>
-                        <select id="issue-type" name="issue_type" class="form-control">
-                            <option value="Minor">Minor issues</option>
-                            <option value="Moderate">Moderate issues</option>
-                            <option value="Major">Major issues</option>
+                    <!-- Q7: Performance Issues -->
+                    <div class="form-group" id="performance-issues" style="display: none;">
+                        <label>What issues does the product have?</label>
+                        <select id="performance_issue" name="performance_issue" class="form-control">
+                            <option value="Minor">Minor</option>
+                            <option value="Moderate">Moderate</option>
+                            <option value="Major">Major</option>
                         </select>
                     </div>
 
-                    <!-- Q9: Materials used in the item that are recyclable -->
+                    <!-- Q8: Recyclable Materials -->
                     <div class="form-group">
-                        <label>What materials are recyclable?</label>
-                        <select id="recyclable-materials" name="recyclable[]" class="form-control" multiple>
+                        <label>Recyclable Materials</label>
+                        <select id="recyclable" name="recyclable[]" class="form-control" multiple>
                             <option value="Metals">Metals</option>
                             <option value="Plastics">Plastics</option>
                             <option value="Glass">Glass</option>
-                            <option value="Electronics">Electronic Components</option>
+                            <option value="Electronic components">Electronic components</option>
                         </select>
                     </div>
 
-                    <!-- Generate Eco Rating Button -->
                     <button type="button" class="btn btn-success" id="generate-eco-rating">Generate Eco Rating</button>
                 </form>
             </div>
@@ -387,76 +374,52 @@
 
     // === Eco Rating AJAX Functionality ===
 
-    $(document).ready(function () {
-        // Show or hide fields based on parts replacement answer
-        $('#part-replacement').on('change', function () {
-        const value = $(this).val(); // Get the selected value
-        console.log('Parts replaced:', value); // Debugging
-
-        if (value === 'Yes') {
-            console.log('Showing related fields'); // Debugging
-            $('#parts-replaced-group').show(); // Show related fields
-            $('#quality-parts-group').show();
-            $('#replacer-group').show();
-        } else {
-            console.log('Hiding related fields'); // Debugging
-            $('#parts-replaced-group').hide(); // Hide related fields
-            $('#quality-parts-group').hide();
-            $('#replacer-group').hide();
-        }
-        });
-
-        // Show or hide issues question based on functionality
-        $('#functional-status').on('change', function () {
-            const value = $(this).val();
-            if (value === 'No') {
-                $('#issues-group').show();
+    // Toggle replacement details based on parts replaced
+    $('#parts_replaced').on('change', function () {
+            if ($(this).val() === 'Yes') {
+                $('#replacement-details').show();
             } else {
-                $('#issues-group').hide();
+                $('#replacement-details').hide();
             }
         });
 
-        // Handle Generate Eco Rating button click
+        // Toggle performance issues based on functionality
+        $('#functionality').on('change', function () {
+            if ($(this).val() === 'No') {
+                $('#performance-issues').show();
+            } else {
+                $('#performance-issues').hide();
+            }
+        });
+
+        // Handle generation of eco rating
         $('#generate-eco-rating').on('click', function () {
-            // Collect form data for eco rating
-            const data = {
-                _token: "{{ csrf_token() }}", // Include CSRF token for security
-                product: $('#item').val(), // Ensure this is the correct field for product
-                age: $('#product-age').val(), // Product age
-                parts_replaced: $('#part-replacement').val(), // Whether parts were replaced
-                parts_count: $('#parts-count').val(), // Number of parts replaced
-                quality_parts: ($('#quality-parts').val() || [])[0] || null,
-                replacer: ($('#replacer').val() || [])[0] || null,
-                functionality: $('#functional-status').val(), // Whether the product is functional
-                performance_issue: $('#issue-type').val(), // Type of performance issues
-                recyclable: $('#recyclable-materials').val() || [], // Recyclable materials
+            const ecoData = {
+                _token: '{{ csrf_token() }}',
+                product: $('#product').val(),
+                age: $('#age').val(),
+                parts_replaced: $('#parts_replaced').val(),
+                quality_parts: $('#parts_replaced').val() === 'Yes' ? $('#quality_parts').val() : null,
+                replacer: $('#parts_replaced').val() === 'Yes' ? $('#replacer').val() : null,
+                functionality: $('#functionality').val(),
+                performance_issue: $('#functionality').val() === 'No' ? $('#performance_issue').val() : null,
+                recyclable: $('#recyclable').val()
             };
 
-            // Log data for debugging purposes
-            console.log("Eco Rating Data:", data);
-            console.log("Product Value:", $('#item').val());
-
-            // Make AJAX request to calculate eco rating
             $.ajax({
-                url: "{{ route('admin.product.calculate-eco-rating') }}", // Backend route
-                method: "POST", // Use POST to send form data
-                data: data, // Pass collected data
+                url: '{{ route('admin.product.calculate-eco-rating') }}',
+                method: 'POST',
+                data: ecoData,
                 success: function (response) {
-                    console.log("Eco Rating Response:", response);
-
-                    // Populate the textarea with the calculated eco rating
                     $('#eco-rating').val(response.rating);
-
-                    // Close the modal after successful response
                     $('#ecoRatingModal').modal('hide');
                 },
                 error: function (xhr, status, error) {
-                    console.error("Error Generating Eco Rating:", error);
-                    alert('An error occurred while generating the eco rating. Please try again.');
+                    console.error("Error calculating eco rating:", error);
+                    alert('An error occurred while calculating the eco rating. Please try again.');
                 },
             });
         });
-    });
 
     $(document).ready(function () {
     // Handle changes to the product type dropdown
