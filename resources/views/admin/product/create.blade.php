@@ -213,32 +213,30 @@
                         <select id="product" name="product" class="form-control">
                             <option value="">Select</option>
                             <option value="Mobile_Phones">Mobile Phones</option>
-                            <option value="Laptops">Laptops</option>
-                            <option value="Smartwatches">Smartwatches</option>
-                            <option value="HeadphonesandEarbuds">Headphones and Earbuds</option>
-                            <option value="Portable_Chargers">Portable Chargers (Power Banks)</option>
+                            <option value="Laptops & tablets">Laptops</option>
                             <option value="Refrigerators">Refrigerators</option>
-                            <option value="Washing_Machines">Washing Machines</option>
+                            <option value="Washing machines">Washing Machines</option>
                             <option value="Microwaves">Microwaves</option>
                             <option value="Toasters">Toasters</option>
-                            <option value="AirConditioners">Air Conditioners</option>
+                            <option value="'Air conditioners">Air Conditioners</option>
                             <option value="Blenders">Blenders</option>
-                            <option value="VacuumCleaners">Vacuum Cleaners</option>
-                            <option value="RiceCookers">Rice Cookers</option>
-                            <option value="ElectricKettles">Electric Kettles</option>
+                            <option value="Vacuum Cleaners">Vacuum Cleaners</option>
+                            <option value="Rice cookers">Rice Cookers</option>
+                            <option value="Electric kettles">Electric Kettles</option>
                             <option value="Televisions">Televisions</option>
-                            <option value="DVD">DVD/Blu-ray Players</option>
+                            <option value="DVD players">DVD/Blu-ray Players</option>
                             <option value="Speakers">Speakers</option>
                             <option value="Printers">Printers</option>
                             <option value="Scanners">Scanners</option>
                             <option value="Projectors">Projectors</option>
-                            <option value="FaxMachines">Fax Machines</option>
+                            <option value="Fax machines">Fax Machines</option>
                             <option value="Fans">Fans</option>
-                            <option value="HairDryers">Hair Dryers</option>
+
+                            <!-- <option value="HairDryers">Hair Dryers</option>
                             <option value="ElectricShavers">Electric Shavers</option>
                             <option value="Clocks">Clocks (Smart Clocks, Alarm Clocks)</option>
                             <option value="DashCameras">Dash Cameras</option>
-                            <option value="CarAudioSystems">Car Audio Systems</option>
+                            <option value="CarAudioSystems">Car Audio Systems</option> -->
                             <!-- Add other product types here -->
                         </select>
                     </div>

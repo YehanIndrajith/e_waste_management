@@ -57,6 +57,11 @@ class SecondPhaseQuizController extends Controller
         $result = QuizScore::where('user_id', $user->id)
         ->first();
 
+        if ($result) {
+            // If the user has already taken the quiz, redirect or display a message
+            return redirect()->route('user.dashboard')->with('error', 'You have already completed this quiz.');
+        }
+
         $questions = $this->getIntermediateQuestions();
         return view('frontend.activities.intermediate.second-phase-quiz', compact('questions'));
     }
@@ -66,6 +71,11 @@ class SecondPhaseQuizController extends Controller
         $user = Auth::user();
         $result = QuizScore::where('user_id', $user->id)
         ->first();
+
+        if ($result) {
+            // If the user has already taken the quiz, redirect or display a message
+            return redirect()->route('user.dashboard')->with('error', 'You have already completed this quiz.');
+        }
 
         $questions = $this->getProQuestions();
         return view('frontend.activities.pro.second-phase-quiz', compact('questions'));
@@ -116,14 +126,24 @@ public function processQuizSubmission(Request $request, $level)
     $questions = $this->getQuestionsByLevel($level);
     $answers = $request->input('answers', []);
     $score = 0;
+    $questionResults = []; // To store each question result
 
     foreach ($questions as $index => $question) {
-        if (isset($answers[$index]) && $answers[$index] === $question['correct']) {
+        $isCorrect = (isset($answers[$index]) && $answers[$index] === $question['correct']);
+        if ($isCorrect) {
             $score++;
         }
+
+        // Store the question text, user's answer, correct answer, and whether it was correct
+        $questionResults[] = [
+            'question' => $question['question'],
+            'user_answer' => $answers[$index] ?? 'No answer',
+            'correct_answer' => $question['correct'],
+            'is_correct' => $isCorrect,
+        ];
     }
 
-    // Store the score
+    // Store the score in the database (if necessary)
     QuizScore::updateOrCreate(
         ['user_id' => $user->id, 'level' => $level],
         ['score' => $score]
@@ -131,8 +151,12 @@ public function processQuizSubmission(Request $request, $level)
 
     return redirect()->route('user.quiz.second-phase.result')->with([
         'score' => $score,
-        'total' => count($questions)
+        'total' => count($questions),
+        'questionResults' => $questionResults
+
     ]);
+
+  
 }
 
     public function getQuestionsByLevel($level)

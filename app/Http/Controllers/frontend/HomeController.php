@@ -8,6 +8,7 @@ use App\Models\HomePageSetting;
 use App\Models\Product;
 use App\Models\Slider;
 use App\Models\Quiz1Result;
+use App\Models\QuizScore;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -44,26 +45,28 @@ class HomeController extends Controller
    }
 
    private function getTopPerformersByLevel()
-   {
-       $levels = ['beginner', 'intermediate', 'pro'];
-       $topPerformers = [];
+{
+    $levels = ['beginner', 'intermediate', 'pro'];
+    $topPerformers = [];
 
-       foreach ($levels as $level) {
-           $topPerformersForLevel = Quiz1Result::where('level', $level)
-               ->orderBy('marks', 'desc')
-               ->take(3)
-               ->get()
-               ->map(function ($result) {
-                   return [
-                       'username' => $result->username,
-                       'marks' => $result->marks,
-                       'level' => $result->level
-                   ];
-               });
+    foreach ($levels as $level) {
+        $topPerformersForLevel = QuizScore::with('user') // eager load user relation
+            ->where('level', $level)
+            ->orderByDesc('score')
+            ->take(3)
+            ->get()
+            ->map(function ($result) {
+                return [
+                    'username' => $result->user->username ?? 'Unknown User', // adjust to 'name' if needed
+                    'marks' => $result->score,
+                    'level' => $result->level
+                ];
+            });
 
-           $topPerformers[$level] = $topPerformersForLevel;
-       }
+        $topPerformers[$level] = $topPerformersForLevel;
+    }
 
-       return $topPerformers;
-   }
+    return $topPerformers;
+}
+
 }

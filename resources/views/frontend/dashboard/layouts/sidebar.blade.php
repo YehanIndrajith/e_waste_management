@@ -98,7 +98,7 @@
           </a>
       </li>
       <li>
-          <a href="">
+          <a href="{{ route('user.quiz.second-phase.show') }}">
               <i class="fas fa-book-reader"></i> Post Quiz
           </a>
       </li>
