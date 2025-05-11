@@ -14,4 +14,13 @@ public function showProduct(string $slug)
     $product = Product::where('slug', $slug)->where('status', 1)->first();
    return view('frontend.pages.product-detail', compact('product'));
 }
+
+// if($request->has('search')){
+//     $products = Product::where(function($query) use ($request){
+//         $query->where('name', 'like', '%'.$request->search.'%')
+//            ->orWhere('long_desciption', 'like', '%'.$request->search.'%' )
+//     })->get();
+// }
+
+
 }
