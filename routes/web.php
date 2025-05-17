@@ -108,7 +108,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
             // Image Matching Routes
             Route::get('image-matching', [IntermediateImageMatchingQuizController::class, 'showImageMatchingForm'])->name('image-matching');
 
-            Route::get('puzzle', [PuzzleGameController::class, 'showIntermediatePuzzle'])->name('puzzle');
+            // Route::get('puzzle', [PuzzleGameController::class, 'showIntermediatePuzzle'])->name('puzzle');
 
             // Route::get('second-phase-quiz', [SecondPhaseQuizController::class, 'showIntermediateQuiz'])->name('second-phase.quiz');
             // Route::post('second-phase-quiz/submit', [SecondPhaseQuizController::class, 'submitIntermediateQuiz'])->name('second-phase.quiz.results');
