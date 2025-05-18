@@ -17,6 +17,10 @@ class VendorShopProfileController extends Controller
     public function index()
     {
         $profile = Vendor::where('user_id', Auth::user()->id)->first();
+        if (!$profile) {
+            // If no profile, show the create form
+            return view('vendor.shop-profile.create');
+        }
         return view('vendor.shop-profile.index', compact('profile'));
     }
 
@@ -25,7 +29,7 @@ class VendorShopProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('vendor.shop-profile.create');
     }
 
     /**
@@ -40,13 +44,15 @@ class VendorShopProfileController extends Controller
             'email' => ['required', 'email', 'max:200'],
             'address' => ['required'],
             'description' => ['required'],
-            
         ]);
 
         $vendor = Vendor::where('user_id', Auth::user()->id)->first();
-
-        $bannerPath = $this->updateImage($request, 'banner', 'uploads', $vendor->banner);
-        $vendor->banner = empty(!$bannerPath) ? $bannerPath : $vendor->banner;
+        if (!$vendor) {
+            $vendor = new Vendor();
+            $vendor->user_id = Auth::user()->id;
+        }
+        $bannerPath = $this->uploadImage($request, 'banner', 'uploads');
+        $vendor->banner = $bannerPath;
         $vendor->phone = $request->phone;
         $vendor->shop_name = $request->shop_name;
         $vendor->email = $request->email;
@@ -54,8 +60,7 @@ class VendorShopProfileController extends Controller
         $vendor->description = $request->description;
         $vendor->save();
 
-        return redirect()->back()->with('success', 'Vendor Shop Profile Updated successfully!');
-
+        return redirect()->route('vendor.shop-profile.index')->with('success', 'Vendor Shop Profile Saved successfully!');
     }
 
     /**
