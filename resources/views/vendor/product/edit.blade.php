@@ -169,7 +169,7 @@
                             <div class="form-group">
                                 <label>Eco Rating</label>
                                 <div class="input-group">
-                                    <textarea id="eco-rating" name="eco_rating" class="form-control" value="{{$product->eco_rating}}" readonly>
+                                    <textarea id="eco-rating" name="eco_rating" class="form-control" {{$product->eco_rating}} readonly>
                                         @error('eco_rating')
                                         {{'get your eco rating'}}
                                        @enderror

@@ -74,18 +74,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Child category dropdown -->
-                                <!-- <div class="col-md-4">
-                                    <div class="form-group child-category">
-                                        <label>Child Category</label>
-                                        <select class="form-control" id="child-category" name="child_category_id">
-                                            <option value="">Select</option>
-                                        </select>
-                                        @error('child_category_id')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div> -->
                             </div>
 
                             
@@ -108,13 +96,6 @@
                               </div>
 
                                <!-- Product Video Link field -->
-                               <!-- <div class="form-group">
-                                <label>Video Link</label>
-                                <input type="text" class="form-control" name="video_link" value="{{ old('video_link') }}">
-                                @error('sku')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                               </div> -->
 
                                 <!-- Product short description field -->
                                 <div class="form-group">
@@ -133,9 +114,6 @@
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                    </div>
-
-                          
-
                             
                                  <!-- Product Type -->
                              <div class="form-group">
@@ -314,27 +292,62 @@
     </div>
 </div>
 
-
-
 @endsection
 @push('scripts')
 <script>
     $(document).ready(function () {
-        // On main category change, load subcategories dynamically
-        $('#main-category').on('change', function () {
-            let id = $(this).val(); // Get the selected main category ID
-            console.log("Selected Main Category ID:", id);
 
+        // ✅ 1. Subcategory to Product Name Mapping
+        const subcategoryToProductMap = {
+            13: 'Mobile_Phones',
+            16: 'Laptops & tablets',
+            17: 'Printers',
+            18: 'Mobile_Phones',
+            19: 'Printers',
+            22: 'Laptops & tablets',
+            23: 'Refrigerators',
+            24: 'Washing machines',
+            25: 'Microwaves',
+            26: 'Toasters',
+            27: 'Air conditioners',
+            28: 'Blenders',
+            29: 'Vacuum Cleaners',
+            30: 'Rice cookers',
+            31: 'Electric kettles',
+            32: 'Televisions',
+            33: 'DVD players',
+            34: 'Speakers',
+            35: 'Scanners',
+            36: 'Projectors',
+            37: 'Fax machines',
+            38: 'Fans',
+            39: 'Refrigerators',
+            40: 'Washing machines',
+            41: 'Microwaves',
+            42: 'Toasters',
+            43: 'Air conditioners',
+            44: 'Blenders',
+            45: 'Vacuum Cleaners',
+            46: 'Rice cookers',
+            47: 'Electric kettles',
+            48: 'Televisions',
+            49: 'DVD players',
+            50: 'Speakers',
+            51: 'Scanners',
+            52: 'Projectors',
+            53: 'Fax machines',
+            54: 'Fans'
+        };
+
+        // ✅ 2. Load subcategories when category changes
+        $('#main-category').on('change', function () {
+            let id = $(this).val();
             $.ajax({
                 method: 'GET',
-                url: '{{ route('vendor.product.get-subcategories') }}', // Route for fetching subcategories
+                url: '{{ route('vendor.product.get-subcategories') }}',
                 data: { id: id },
                 success: function (data) {
-                    console.log("Subcategories Data:", data);
-
-                    // Populate the subcategory dropdown
                     $('#sub-category').html('<option value="">Select</option>');
-                    $('#child-category').html('<option value="">Select</option>'); // Reset child category
                     $.each(data, function (i, item) {
                         $('#sub-category').append(`<option value="${item.id}">${item.name}</option>`);
                     });
@@ -345,53 +358,28 @@
             });
         });
 
-        // On subcategory change, load child categories dynamically
-        $('#sub-category').on('change', function () {
-            let id = $(this).val(); // Get the selected subcategory ID
-            console.log("Selected Sub Category ID:", id);
+        // ✅ 3. Auto-select product type in Eco Modal when opened
+        $('#ecoRatingModal').on('show.bs.modal', function () {
+            const subcategoryId = parseInt($('#sub-category').val());
+            const mappedProduct = subcategoryToProductMap[subcategoryId];
 
-            $.ajax({
-                method: 'GET',
-                url: '{{ route('vendor.product.get-child-categories') }}', // Route for fetching child categories
-                data: { id: id },
-                success: function (data) {
-                    console.log("Child Categories Data:", data);
-
-                    // Populate the child category dropdown
-                    $('#child-category').html('<option value="">Select</option>');
-                    $.each(data, function (i, item) {
-                        $('#child-category').append(`<option value="${item.id}">${item.name}</option>`);
-                    });
-                },
-                error: function (xhr, status, error) {
-                    console.error("AJAX Error:", error);
-                }
-            });
-        });
-    });
-
-    // === Eco Rating AJAX Functionality ===
-
-   
-    // Toggle replacement details based on parts replaced
-    $('#parts_replaced').on('change', function () {
-            if ($(this).val() === 'Yes') {
-                $('#replacement-details').show();
+            if (mappedProduct) {
+                $('#product').val(mappedProduct).prop('disabled', true); // Disable user changes
             } else {
-                $('#replacement-details').hide();
+                $('#product').val('').prop('disabled', false); // Allow manual selection if mapping missing
             }
         });
 
-        // Toggle performance issues based on functionality
+        // ✅ 4. Show/hide part replacement & issue fields
+        $('#parts_replaced').on('change', function () {
+            $('#replacement-details').toggle($(this).val() === 'Yes');
+        });
+
         $('#functionality').on('change', function () {
-            if ($(this).val() === 'No') {
-                $('#performance-issues').show();
-            } else {
-                $('#performance-issues').hide();
-            }
+            $('#performance-issues').toggle($(this).val() === 'No');
         });
 
-        // Handle generation of eco rating
+        // ✅ 5. Submit eco rating calculation via AJAX
         $('#generate-eco-rating').on('click', function () {
             const ecoData = {
                 _token: '{{ csrf_token() }}',
@@ -413,28 +401,20 @@
                     $('#eco-rating').val(response.rating);
                     $('#ecoRatingModal').modal('hide');
                 },
-                error: function (xhr, status, error) {
-                    console.error("Error calculating eco rating:", error);
-                    alert('An error occurred while calculating the eco rating. Please try again.');
-                },
+                error: function () {
+                    alert('An error occurred while calculating the eco rating.');
+                }
             });
         });
 
-    $(document).ready(function () {
-    // Handle changes to the product type dropdown
-    $('select[name="product_type"]').on('change', function () {
-        const productType = $(this).val(); // Get the selected value
-        const priceField = $('input[name="price"]'); // Select the price field
+        // ✅ 6. If product type is donation, auto-set price to 0
+        $('select[name="product_type"]').on('change', function () {
+            const isDonation = $(this).val() === 'type_dontion';
+            const priceField = $('input[name="price"]');
+            priceField.prop('readonly', isDonation).val(isDonation ? 0 : '');
+        });
 
-        if (productType === 'type_dontion') {
-            // Set the price field to read-only and set the value to 0
-            priceField.val(0).prop('readonly', true);
-        } else {
-            // Make the price field editable and clear its value
-            priceField.prop('readonly', false).val('');
-        }
     });
-});
-
 </script>
 @endpush
+

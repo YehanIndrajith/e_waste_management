@@ -31,9 +31,9 @@
         <li class="dropdown {{ setActive([
           'admin.vendor-profile.*'   
         ])}}">
-          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Vendor</span></a>
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Admin</span></a>
           <ul class="dropdown-menu">
-            <li class="{{setActive(['admin.vendor-profile.*'])}}"><a class="nav-link" href="{{route('admin.vendor-profile.index')}}">Vendor Profile</a></li>
+            <li class="{{setActive(['admin.vendor-profile.*'])}}"><a class="nav-link" href="{{route('admin.vendor-profile.index')}}">Admin Profile</a></li>
           </ul>
         </li>
 
