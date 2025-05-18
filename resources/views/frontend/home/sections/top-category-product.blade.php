@@ -9,69 +9,86 @@
                 <div class="wsus__section_header for_md">
                     <h3
                         style="
-    background: linear-gradient(45deg, #007bff, #00c6ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 1.5rem;
-    font-weight: 800;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    position: relative;
-    padding-bottom: 10px;
-">
-                        Hot Selling Categories of the month</h3>
+                            background: linear-gradient(45deg, #007bff, #00c6ff);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            font-size: 1.5rem;
+                            font-weight: 800;
+                            text-align: center;
+                            text-transform: uppercase;
+                            letter-spacing: 1px;
+                            position: relative;
+                            padding-bottom: 10px;">
+                        Hot Selling Categories of the Month
+                    </h3>
+
                     <div class="monthly_top_filter">
                         @php
                             $products = [];
                         @endphp
+
                         @foreach ($sellingCategories as $sellingCategory)
                             @php
                                 $lastKey = [];
-                                foreach ($sellingCategory as $key => $category) {
-                                    if ($category == null) {
-                                        break;
-                                    }
-                                    $lastKey = [$key => $category];
-                                }
-                                if (array_keys($lastKey)[0] == 'category') {
-                                    $category = \App\Models\Category::find($lastKey['category']);
-                                    $products[] = \App\Models\Product::where('category_id', $category->id)
-                                        ->orderBy('id', 'DESC')
-                                        ->take(12)
-                                        ->get();
-                                } elseif (array_keys($lastKey)[0] == 'sub_category') {
-                                    $category = \App\Models\SubCategory::find($lastKey['sub_category']);
-                                    $products[] = \App\Models\Product::where('sub_category_id', $category->id)
-                                        ->orderBy('id', 'DESC')
-                                        ->take(12)
-                                        ->get();
-                                } else {
-                                    $category = \App\Models\ChildCategory::find($lastKey['child_category']);
-                                    $products[] = \App\Models\Product::where('child_category_id', $category->id)
-                                        ->orderBy('id', 'DESC')
-                                        ->take(12)
-                                        ->get();
+                                foreach ($sellingCategory as $key => $catId) {
+                                    if ($catId == null) break;
+                                    $lastKey = [$key => $catId];
                                 }
 
+                                $category = null;
+                                $productSet = collect(); // default empty collection
+
+                                // ✅ Null-safe access added below
+                                if (array_key_first($lastKey) === 'category') {
+                                    $category = \App\Models\Category::find($lastKey['category']);
+                                    if ($category) {
+                                        $productSet = \App\Models\Product::where('category_id', $category->id)
+                                            ->orderBy('id', 'DESC')
+                                            ->take(12)
+                                            ->get();
+                                    }
+                                } elseif (array_key_first($lastKey) === 'sub_category') {
+                                    $category = \App\Models\SubCategory::find($lastKey['sub_category']);
+                                    if ($category) {
+                                        $productSet = \App\Models\Product::where('sub_category_id', $category->id)
+                                            ->orderBy('id', 'DESC')
+                                            ->take(12)
+                                            ->get();
+                                    }
+                                } elseif (array_key_first($lastKey) === 'child_category') {
+                                    $category = \App\Models\ChildCategory::find($lastKey['child_category']);
+                                    if ($category) {
+                                        $productSet = \App\Models\Product::where('child_category_id', $category->id)
+                                            ->orderBy('id', 'DESC')
+                                            ->take(12)
+                                            ->get();
+                                    }
+                                }
+
+                                $products[] = $productSet;
                             @endphp
-                            <button class="{{ $loop->index == 0 ? 'auto_click active' : '' }}"
-                                data-filter=".category-{{ $loop->index }}">{{ $category->name }}</button>
+
+                            @if ($category)
+                                <button class="{{ $loop->index == 0 ? 'auto_click active' : '' }}"
+                                    data-filter=".category-{{ $loop->index }}">
+                                    {{ $category->name }}
+                                </button>
+                            @endif
                         @endforeach
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-xl-12 col-lg-12">
                 <div class="row grid g-4">
-                    @foreach ($products as $key => $product)
-                        @foreach ($product as $item)
+                    @foreach ($products as $key => $productGroup)
+                        @foreach ($productGroup as $item)
                             <div class="col-xl-2 col-6 col-sm-6 col-md-4 col-lg-3 category-{{ $key }}">
-                                <a class="wsus__hot_deals__single shadow-sm rounded overflow-hidden d-block"
-                                    href="#">
+                                <a class="wsus__hot_deals__single shadow-sm rounded overflow-hidden d-block" href="#">
                                     <div class="wsus__hot_deals__single_img position-relative">
-                                        <img src="{{ asset($item->thumb_image) }}" alt="bag"
+                                        <img src="{{ asset($item->thumb_image) }}" alt="image"
                                             class="img-fluid w-100 product-image"
                                             style="height: 200px; object-fit: cover;">
 
@@ -95,7 +112,6 @@
                                                     Rs. {{ $item->price }}
                                                 @endif
                                             </p>
-
                                         </div>
                                     </div>
                                 </a>

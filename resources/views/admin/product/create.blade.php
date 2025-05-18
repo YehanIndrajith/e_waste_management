@@ -320,21 +320,59 @@
 @push('scripts')
 <script>
     $(document).ready(function () {
-        // On main category change, load subcategories dynamically
+
+        // === 1. Define Subcategory → Product Map ===
+        const subcategoryToProductMap = {
+            13: 'Mobile_Phones',
+            16: 'Laptops & tablets',
+            17: 'Printers',
+            18: 'Mobile_Phones',
+            19: 'Printers',
+            22: 'Laptops & tablets',
+            23: 'Refrigerators',
+            24: 'Washing machines',
+            25: 'Microwaves',
+            26: 'Toasters',
+            27: 'Air conditioners',
+            28: 'Blenders',
+            29: 'Vacuum Cleaners',
+            30: 'Rice cookers',
+            31: 'Electric kettles',
+            32: 'Televisions',
+            33: 'DVD players',
+            34: 'Speakers',
+            35: 'Scanners',
+            36: 'Projectors',
+            37: 'Fax machines',
+            38: 'Fans',
+            39: 'Refrigerators',
+            40: 'Washing machines',
+            41: 'Microwaves',
+            42: 'Toasters',
+            43: 'Air conditioners',
+            44: 'Blenders',
+            45: 'Vacuum Cleaners',
+            46: 'Rice cookers',
+            47: 'Electric kettles',
+            48: 'Televisions',
+            49: 'DVD players',
+            50: 'Speakers',
+            51: 'Scanners',
+            52: 'Projectors',
+            53: 'Fax machines',
+            54: 'Fans'
+        };
+
+        // === 2. Load Subcategories Dynamically ===
         $('#main-category').on('change', function () {
-            let id = $(this).val(); // Get the selected main category ID
-            console.log("Selected Main Category ID:", id);
+            let id = $(this).val();
 
             $.ajax({
                 method: 'GET',
-                url: '{{ route('admin.product.get-subcategories') }}', // Route for fetching subcategories
+                url: '{{ route('admin.product.get-subcategories') }}',
                 data: { id: id },
                 success: function (data) {
-                    console.log("Subcategories Data:", data);
-
-                    // Populate the subcategory dropdown
                     $('#sub-category').html('<option value="">Select</option>');
-                    $('#child-category').html('<option value="">Select</option>'); // Reset child category
                     $.each(data, function (i, item) {
                         $('#sub-category').append(`<option value="${item.id}">${item.name}</option>`);
                     });
@@ -345,52 +383,44 @@
             });
         });
 
-        // On subcategory change, load child categories dynamically
+        // === 3. Load Child Categories ===
         $('#sub-category').on('change', function () {
-            let id = $(this).val(); // Get the selected subcategory ID
-            console.log("Selected Sub Category ID:", id);
-
+            let id = $(this).val();
             $.ajax({
                 method: 'GET',
-                url: '{{ route('admin.product.get-child-categories') }}', // Route for fetching child categories
+                url: '{{ route('admin.product.get-child-categories') }}',
                 data: { id: id },
                 success: function (data) {
-                    console.log("Child Categories Data:", data);
-
-                    // Populate the child category dropdown
                     $('#child-category').html('<option value="">Select</option>');
                     $.each(data, function (i, item) {
                         $('#child-category').append(`<option value="${item.id}">${item.name}</option>`);
                     });
-                },
-                error: function (xhr, status, error) {
-                    console.error("AJAX Error:", error);
                 }
             });
         });
-    });
 
-    // === Eco Rating AJAX Functionality ===
+        // === 4. Pre-fill Product Type in Eco Modal based on Subcategory ===
+        $('#ecoRatingModal').on('show.bs.modal', function () {
+            const subcategoryId = parseInt($('#sub-category').val());
+            const mappedProduct = subcategoryToProductMap[subcategoryId];
 
-    // Toggle replacement details based on parts replaced
-    $('#parts_replaced').on('change', function () {
-            if ($(this).val() === 'Yes') {
-                $('#replacement-details').show();
+            if (mappedProduct) {
+        $('#product').val(mappedProduct).prop('disabled', true); // disable selection
             } else {
-                $('#replacement-details').hide();
+        $('#product').val('').prop('disabled', false); // enable if no match
             }
         });
 
-        // Toggle performance issues based on functionality
+        // === 5. Show/Hide Fields in Eco Modal ===
+        $('#parts_replaced').on('change', function () {
+            $('#replacement-details').toggle($(this).val() === 'Yes');
+        });
+
         $('#functionality').on('change', function () {
-            if ($(this).val() === 'No') {
-                $('#performance-issues').show();
-            } else {
-                $('#performance-issues').hide();
-            }
+            $('#performance-issues').toggle($(this).val() === 'No');
         });
 
-        // Handle generation of eco rating
+        // === 6. Handle Eco Rating AJAX ===
         $('#generate-eco-rating').on('click', function () {
             const ecoData = {
                 _token: '{{ csrf_token() }}',
@@ -412,28 +442,19 @@
                     $('#eco-rating').val(response.rating);
                     $('#ecoRatingModal').modal('hide');
                 },
-                error: function (xhr, status, error) {
-                    console.error("Error calculating eco rating:", error);
-                    alert('An error occurred while calculating the eco rating. Please try again.');
-                },
+                error: function () {
+                    alert('Error calculating eco rating.');
+                }
             });
         });
 
-    $(document).ready(function () {
-    // Handle changes to the product type dropdown
-    $('select[name="product_type"]').on('change', function () {
-        const productType = $(this).val(); // Get the selected value
-        const priceField = $('input[name="price"]'); // Select the price field
-
-        if (productType === 'type_dontion') {
-            // Set the price field to read-only and set the value to 0
-            priceField.val(0).prop('readonly', true);
-        } else {
-            // Make the price field editable and clear its value
-            priceField.prop('readonly', false).val('');
-        }
+        // === 7. Handle Product Type for Donation ===
+        $('select[name="product_type"]').on('change', function () {
+            const isDonation = $(this).val() === 'type_dontion';
+            const priceField = $('input[name="price"]');
+            priceField.prop('readonly', isDonation).val(isDonation ? 0 : '');
+        });
     });
-});
-
 </script>
 @endpush
+
