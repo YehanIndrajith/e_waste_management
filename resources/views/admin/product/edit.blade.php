@@ -300,7 +300,7 @@
                     <!-- Q9: Materials used in the item that are recyclable -->
                     <div class="form-group">
                         <label>What materials are recyclable?</label>
-                        <select id="recyclable-materials" name="recyclable[]" class="form-control" multiple>
+                        <select id="recyclable-materials" name="recyclable[]" class="form-control" style="height: 90px;" multiple>
                             <option value="Metals">Metals</option>
                             <option value="Plastics">Plastics</option>
                             <option value="Glass">Glass</option>

@@ -277,7 +277,7 @@
                     <!-- Q8: Recyclable Materials -->
                     <div class="form-group">
                         <label>Recyclable Materials</label>
-                        <select id="recyclable" name="recyclable[]" class="form-control" multiple>
+                        <select id="recyclable" name="recyclable[]" class="form-control" style="height: 90px;" multiple>
                             <option value="Metals">Metals</option>
                             <option value="Plastics">Plastics</option>
                             <option value="Glass">Glass</option>
