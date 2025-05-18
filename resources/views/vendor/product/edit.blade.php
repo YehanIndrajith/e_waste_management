@@ -81,7 +81,7 @@
                                 </div>
 
                                 <!-- Child category dropdown -->
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     <div class="form-group child-category">
                                         <label>Child Category</label>
                                         <select class="form-control" id="child-category" name="child_category_id">
@@ -91,7 +91,7 @@
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                             
@@ -114,13 +114,13 @@
                               </div>
 
                                <!-- Product Video Link field -->
-                               <div class="form-group">
+                               <!-- <div class="form-group">
                                 <label>Video Link</label>
                                 <input type="text" class="form-control" name="video_link" value="{{$product->video_link}}">
                                 @error('sku')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
-                               </div>
+                               </div> -->
 
                                 <!-- Product short description field -->
                                 <div class="form-group">
