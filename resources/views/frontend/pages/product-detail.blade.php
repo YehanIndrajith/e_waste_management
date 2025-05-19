@@ -123,6 +123,21 @@
                                 </div>
                             </div>
 
+                            <!-- Vendor Information -->
+                            <div class="wsus_pro_det_color" style="margin: 20px 0; padding: 15px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <h5 style="margin: 0; font-size: 16px; font-weight: 600; color: #333;">Vendor Information:</h5>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-store" style="color: #666;"></i>
+                                        <span style="font-size: 14px; color: #666;">{{ $product->vendor->shop_name }}</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-phone" style="color: #666;"></i>
+                                        <span style="font-size: 14px; color: #666;">{{ $product->vendor->phone }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="wsus_pro__det_size">
                                 <h5>Type :</h5>
                                 @if ($product->product_type === 'type_selling')

@@ -11,8 +11,8 @@ class FrontendProductController extends Controller
     //show product detail page
 public function showProduct(string $slug)
 {
-    $product = Product::where('slug', $slug)->where('status', 1)->first();
-   return view('frontend.pages.product-detail', compact('product'));
+    $product = Product::with('vendor')->where('slug', $slug)->where('status', 1)->first();
+    return view('frontend.pages.product-detail', compact('product'));
 }
 
 // if($request->has('search')){
