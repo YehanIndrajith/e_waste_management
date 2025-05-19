@@ -166,7 +166,7 @@
                            
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-12 mt-md-5 mt-lg-0">
+                    <!-- <div class="col-xl-3 col-md-12 mt-md-5 mt-lg-0">
                         <div class="wsus_pro_det_sidebar" id="sticky_sidebar">
                             <ul>
                                 <li>
@@ -202,7 +202,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -241,7 +241,7 @@
                                                
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div class="col-xl-4 col-md-4">
                                                 <div class="description_single">
                                                     <h6><span>1</span> Free Shipping </h6>
@@ -262,7 +262,7 @@
                                                         year with our special credit card.</p>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 
