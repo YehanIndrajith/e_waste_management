@@ -169,14 +169,10 @@
                             <div class="form-group">
                                 <label>Eco Rating</label>
                                 <div class="input-group">
-                                    <textarea id="eco-rating" name="eco_rating" class="form-control" {{$product->eco_rating}} readonly>
-                                        @error('eco_rating')
-                                        {{'get your eco rating'}}
-                                       @enderror
-                                    </textarea>
+                                    <textarea id="eco-rating" name="eco_rating" class="form-control" readonly>{{ $product->eco_rating }}</textarea>
                                     <div class="input-group-append">
                                         <!-- Button to open modal -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ecoRatingModal">Get Your Eco Rating</button>
+                                        <button type="button" class="btn btn-secondary" disabled>Eco Rating Generated</button>
                                     </div>
                                 </div>
                             </div>
