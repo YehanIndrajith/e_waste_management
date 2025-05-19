@@ -169,6 +169,13 @@
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ecoRatingModal">Get Your Eco Rating</button>
                                     </div>
                                 </div>
+                                <!-- Warning message for low eco rating -->
+                                <div id="low-rating-warning" class="alert alert-danger mt-2" style="display: none;">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    Your item received a low score, indicating that it may no longer be suitable for continued use. 
+                                    We recommend not listing this item for sale. Instead, consider recycling it to minimize environmental impact. 
+                                    You can find the nearest recycling center using this platform.
+                                </div>
                             </div>
 
                             <!-- Status dropdown -->
@@ -440,6 +447,15 @@
                 data: ecoData,
                 success: function (response) {
                     $('#eco-rating').val(response.rating);
+                    
+                    // Check if the rating is low (score <= 30)
+                    const scoreMatch = response.rating.match(/Score: ([\d.]+)/);
+                    if (scoreMatch && parseFloat(scoreMatch[1]) <= 3) {
+                        $('#low-rating-warning').show();
+                    } else {
+                        $('#low-rating-warning').hide();
+                    }
+                    
                     $('#ecoRatingModal').modal('hide');
                 },
                 error: function () {
