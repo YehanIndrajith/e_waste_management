@@ -90,13 +90,13 @@
 
                             
                             <!-- Product SKU field -->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label>SKU</label>
                                 <input type="text" class="form-control" name="sku" value="{{ old('sku') }}">
                                 @error('sku')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
-                            </div>
+                            </div> -->
 
                               <!-- Product Stock quantity field -->
                               <div class="form-group">
