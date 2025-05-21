@@ -109,7 +109,7 @@
                     text: 'All words matched correctly!',
                     icon: 'success',
                     showCancelButton: true,
-                    confirmButtonText: 'Next Level',
+                    // confirmButtonText: 'Next Level',
                     cancelButtonText: '🏠 Back to Dashboard'
                 }).then((result) => {
                     if (result.isConfirmed) {

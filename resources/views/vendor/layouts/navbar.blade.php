@@ -1,163 +1,250 @@
-<nav class="navbar navbar-expand-lg main-navbar">
-    <form class="form-inline mr-auto">
-      <ul class="navbar-nav mr-3">
-        <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-        <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
-      </ul>
+<nav class="navbar navbar-expand-lg main-navbar" 
+     style="background: linear-gradient(to right, #f0f9f1, #ffffff);
+            padding: 15px 25px;
+            box-shadow: 0 2px 10px rgba(81, 187, 106, 0.1);
+            border-bottom: 1px solid rgba(81, 187, 106, 0.1);">
     
+    <!-- Left Side -->
+    <form class="form-inline mr-auto" style="display: flex; align-items: center;">
+        <ul class="navbar-nav mr-3" style="display: flex; align-items: center; gap: 15px;">
+            <li>
+                <a href="#" 
+                   data-toggle="sidebar" 
+                   class="nav-link nav-link-lg"
+                   style="color: #218838;
+                          padding: 10px;
+                          border-radius: 8px;
+                          transition: all 0.3s ease;
+                          background: rgba(81, 187, 106, 0.1);
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;">
+                    <i class="fas fa-bars"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" 
+                   data-toggle="search" 
+                   class="nav-link nav-link-lg d-sm-none"
+                   style="color: #218838;
+                          padding: 10px;
+                          border-radius: 8px;
+                          transition: all 0.3s ease;
+                          background: rgba(81, 187, 106, 0.1);">
+                    <i class="fas fa-search"></i>
+                </a>
+            </li>
+        </ul>
     </form>
-    <ul class="navbar-nav navbar-right">
-      <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
-        <div class="dropdown-menu dropdown-list dropdown-menu-right">
-          {{-- <div class="dropdown-header">Messages
-            <div class="float-right">
-              <a href="#">Mark All As Read</a>
-            </div>
-          </div> --}}
-          {{-- <div class="dropdown-list-content dropdown-list-message">
-            <a href="#" class="dropdown-item dropdown-item-unread">
-              <div class="dropdown-item-avatar">
-                <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle">
-                <div class="is-online"></div>
-              </div>
-              <div class="dropdown-item-desc">
-                <b>Kusnaedi</b>
-                <p>Hello, Bro!</p>
-                <div class="time">10 Hours Ago</div>
-              </div>
+
+    <!-- Right Side -->
+    <ul class="navbar-nav navbar-right" 
+        style="display: flex; 
+               align-items: center; 
+               gap: 15px;">
+        
+        <!-- Messages -->
+        <li class="dropdown dropdown-list-toggle">
+            <a href="#" 
+               data-toggle="dropdown" 
+               class="nav-link nav-link-lg message-toggle beep"
+               style="color: #218838;
+                      padding: 10px;
+                      border-radius: 8px;
+                      transition: all 0.3s ease;
+                      background: rgba(81, 187, 106, 0.1);
+                      position: relative;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;">
+                <i class="far fa-envelope"></i>
+                <span style="position: absolute;
+                           top: -5px;
+                           right: -5px;
+                           width: 8px;
+                           height: 8px;
+                           background: #218838;
+                           border-radius: 50%;"></span>
             </a>
-            <a href="#" class="dropdown-item dropdown-item-unread">
-              <div class="dropdown-item-avatar">
-                <img alt="image" src="assets/img/avatar/avatar-2.png" class="rounded-circle">
-              </div>
-              <div class="dropdown-item-desc">
-                <b>Dedik Sugiharto</b>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                <div class="time">12 Hours Ago</div>
-              </div>
+        </li>
+
+        <!-- Notifications -->
+        <li class="dropdown dropdown-list-toggle">
+            <a href="#" 
+               data-toggle="dropdown" 
+               class="nav-link notification-toggle nav-link-lg beep"
+               style="color: #218838;
+                      padding: 10px;
+                      border-radius: 8px;
+                      transition: all 0.3s ease;
+                      background: rgba(81, 187, 106, 0.1);
+                      position: relative;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;">
+                <i class="far fa-bell"></i>
+                <span style="position: absolute;
+                           top: -5px;
+                           right: -5px;
+                           width: 8px;
+                           height: 8px;
+                           background: #218838;
+                           border-radius: 50%;"></span>
             </a>
-            <a href="#" class="dropdown-item dropdown-item-unread">
-              <div class="dropdown-item-avatar">
-                <img alt="image" src="assets/img/avatar/avatar-3.png" class="rounded-circle">
-                <div class="is-online"></div>
-              </div>
-              <div class="dropdown-item-desc">
-                <b>Agung Ardiansyah</b>
-                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <div class="time">12 Hours Ago</div>
-              </div>
+        </li>
+
+        <!-- User Profile -->
+        <li class="dropdown">
+            <a href="#" 
+               data-toggle="dropdown" 
+               class="nav-link dropdown-toggle nav-link-lg nav-link-user"
+               style="color: #333;
+                      padding: 8px 15px;
+                      border-radius: 25px;
+                      transition: all 0.3s ease;
+                      background: rgba(81, 187, 106, 0.1);
+                      display: flex;
+                      align-items: center;
+                      gap: 10px;">
+                <div class="d-sm-none d-lg-inline-block" 
+                     style="font-weight: 500;">
+                    Hi, Vendor
+                </div>
             </a>
-            <a href="#" class="dropdown-item">
-              <div class="dropdown-item-avatar">
-                <img alt="image" src="assets/img/avatar/avatar-4.png" class="rounded-circle">
-              </div>
-              <div class="dropdown-item-desc">
-                <b>Ardian Rahardiansyah</b>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit ess</p>
-                <div class="time">16 Hours Ago</div>
-              </div>
-            </a>
-            <a href="#" class="dropdown-item">
-              <div class="dropdown-item-avatar">
-                <img alt="image" src="assets/img/avatar/avatar-5.png" class="rounded-circle">
-              </div>
-              <div class="dropdown-item-desc">
-                <b>Alfa Zulkarnain</b>
-                <p>Exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-                <div class="time">Yesterday</div>
-              </div>
-            </a>
-          </div> --}}
-          {{-- <div class="dropdown-footer text-center">
-            <a href="#">View All <i class="fas fa-chevron-right"></i></a>
-          </div> --}}
-        </div>
-      </li>
-      <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
-        <div class="dropdown-menu dropdown-list dropdown-menu-right">
-          {{-- <div class="dropdown-header">Notifications
-            <div class="float-right">
-              <a href="#">Mark All As Read</a>
-            </div>
-          </div> --}}
-          {{-- <div class="dropdown-list-content dropdown-list-icons">
-            <a href="#" class="dropdown-item dropdown-item-unread">
-              <div class="dropdown-item-icon bg-primary text-white">
-                <i class="fas fa-code"></i>
-              </div>
-              <div class="dropdown-item-desc">
-                Template update is available now!
-                <div class="time text-primary">2 Min Ago</div>
-              </div>
-            </a>
-            <a href="#" class="dropdown-item">
-              <div class="dropdown-item-icon bg-info text-white">
-                <i class="far fa-user"></i>
-              </div>
-              <div class="dropdown-item-desc">
-                <b>You</b> and <b>Dedik Sugiharto</b> are now friends
-                <div class="time">10 Hours Ago</div>
-              </div>
-            </a>
-            <a href="#" class="dropdown-item">
-              <div class="dropdown-item-icon bg-success text-white">
-                <i class="fas fa-check"></i>
-              </div>
-              <div class="dropdown-item-desc">
-                <b>Kusnaedi</b> has moved task <b>Fix bug header</b> to <b>Done</b>
-                <div class="time">12 Hours Ago</div>
-              </div>
-            </a>
-            <a href="#" class="dropdown-item">
-              <div class="dropdown-item-icon bg-danger text-white">
-                <i class="fas fa-exclamation-triangle"></i>
-              </div>
-              <div class="dropdown-item-desc">
-                Low disk space. Let's clean it!
-                <div class="time">17 Hours Ago</div>
-              </div>
-            </a>
-            <a href="#" class="dropdown-item">
-              <div class="dropdown-item-icon bg-info text-white">
-                <i class="fas fa-bell"></i>
-              </div>
-              <div class="dropdown-item-desc">
+            <div class="dropdown-menu dropdown-menu-right"
+                 style="background: white;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 15px rgba(81, 187, 106, 0.1);
+                        border: 1px solid rgba(81, 187, 106, 0.1);
+                        min-width: 200px;
+                        padding: 15px;
+                        margin-top: 10px;">
+                <div class="dropdown-title" 
+                     style="color: #218838;
+                            font-weight: 500;
+                            padding: 10px 20px;
+                            border-bottom: 1px solid rgba(81, 187, 106, 0.1);">
+                    Logged in 5 min ago
+                </div>
                 
-                <div class="time">Yesterday</div>
-              </div>
-            </a>
-          </div> --}}
-          {{-- <div class="dropdown-footer text-center">
-            <a href="#">View All <i class="fas fa-chevron-right"></i></a>
-          </div> --}}
-        </div>
-      </li>
-      <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-        {{-- <img alt="image" src="" class="rounded-circle mr-1"> --}}
-        <div class="d-sm-none d-lg-inline-block">Hi, Vendor</div></a>
-        <div class="dropdown-menu dropdown-menu-right">
-          <div class="dropdown-title">Logged in 5 min ago</div>
-          <a href="{{route('vendor.profile')}}" class="dropdown-item has-icon">
-            <i class="far fa-user"></i> Profile
-          </a>
-          <a href="features-activities.html" class="dropdown-item has-icon">
-            <i class="fas fa-bolt"></i> Activities
-          </a>
-          <a href="features-settings.html" class="dropdown-item has-icon">
-            <i class="fas fa-cog"></i> Settings
-          </a>
-          <div class="dropdown-divider"></div>
+                <a href="{{route('vendor.profile')}}" 
+                   class="dropdown-item has-icon"
+                   style="color: #333;
+                          padding: 10px 20px;
+                          display: flex;
+                          align-items: center;
+                          gap: 10px;
+                          transition: all 0.3s ease;
+                          border-radius: 8px;">
+                    <i class="far fa-user" style="color: #218838;"></i> Profile
+                </a>
+                
+                <a href="#" 
+                   class="dropdown-item has-icon"
+                   style="color: #333;
+                          padding: 10px 20px;
+                          display: flex;
+                          align-items: center;
+                          gap: 10px;
+                          transition: all 0.3s ease;
+                          border-radius: 8px;">
+                    <i class="fas fa-bolt" style="color: #218838;"></i> Activities
+                </a>
+                
+                <a href="#" 
+                   class="dropdown-item has-icon"
+                   style="color: #333;
+                          padding: 10px 20px;
+                          display: flex;
+                          align-items: center;
+                          gap: 10px;
+                          transition: all 0.3s ease;
+                          border-radius: 8px;">
+                    <i class="fas fa-cog" style="color: #218838;"></i> Settings
+                </a>
+                
+                <div class="dropdown-divider" 
+                     style="border-color: rgba(81, 187, 106, 0.1);
+                            margin: 10px 0;"></div>
 
-          <form method="POST" action="{{ route('logout') }}">
-            @csrf
-
-            <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                this.closest('form').submit();" class="dropdown-item has-icon text-danger">
-              <i class="fas fa-sign-out-alt"></i> Logout
-            </a>
-          </form>
-          
-        </div>
-      </li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a href="{{ route('logout') }}" 
+                       onclick="event.preventDefault(); this.closest('form').submit();" 
+                       class="dropdown-item has-icon text-danger"
+                       style="color: #dc3545 !important;
+                              padding: 10px 20px;
+                              display: flex;
+                              align-items: center;
+                              gap: 10px;
+                              transition: all 0.3s ease;
+                              border-radius: 8px;">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </form>
+            </div>
+        </li>
     </ul>
-  </nav>
+</nav>
+
+<style>
+    /* Hover Effects */
+    .nav-link:hover {
+        background-color: rgba(81, 187, 106, 0.2) !important;
+        transform: translateY(-2px);
+    }
+
+    .dropdown-item:hover {
+        background-color: rgba(81, 187, 106, 0.1) !important;
+        transform: translateX(5px);
+    }
+
+    .dropdown-item.text-danger:hover {
+        background-color: rgba(220, 53, 69, 0.1) !important;
+        color: #dc3545 !important;
+    }
+
+    /* Notification Beep Animation */
+    .beep::after {
+        content: '';
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 8px;
+        height: 8px;
+        background: #218838;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.5);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    /* Dropdown Animation */
+    .dropdown-menu {
+        animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
