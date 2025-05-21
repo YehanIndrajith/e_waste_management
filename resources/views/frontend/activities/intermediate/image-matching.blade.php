@@ -61,8 +61,7 @@
                         <div class="dropzone mb-4" id="reuse2" data-category="Re-use"></div>
                     </div>
                     <div class="d-flex gap-2 mb-3">
-                        
-                        {{-- <a href="{{route('user.activities.intermediate.puzzle')}}" class="btn btn-secondary">Next Activity</a> --}}
+                        <a href="{{route('user.activities.intermediate.puzzle')}}" class="btn btn-secondary">Next Activity</a>
                         <a href="{{ route('user.dashboard') }}" class="btn btn-secondary">Go to Dashboard</a>
                     </div>
                 </div>

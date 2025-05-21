@@ -15,7 +15,7 @@ class IntermediateImageMatchingQuizController extends Controller
       ->take(6)                         // Take the next 6 rows
       ->get();
 
-  return view('frontend.activities.beginner.image-matching', compact('images'));
+  return view('frontend.activities.intermediate.image-matching', compact('images'));
     }
 
 }
