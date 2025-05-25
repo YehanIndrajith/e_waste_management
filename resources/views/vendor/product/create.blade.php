@@ -118,7 +118,7 @@
                                  <!-- Product Type -->
                              <div class="form-group">
                                 <label>Product Type</label>
-                                <select class="form-control" name="product_type">
+                                <select class="form-control" name="product_type" readonly>
                                     <option value="">Select</option>
                                     <option value="type_selling">Selling</option>
                                     <option value="type_dontion">Donation</option>
@@ -423,12 +423,33 @@
             });
         });
 
-        // ✅ 6. If product type is donation, auto-set price to 0
+        // Handle category change and set product type accordingly
+        $('#main-category').on('change', function(){
+            var categoryId = $(this).val();
+            var productTypeSelect = $('select[name="product_type"]');
+            
+            // Set product type based on category ID
+            if(categoryId == 10) { // Donation category ID
+                productTypeSelect.val('type_dontion');
+            } else if(categoryId == 9) { // Selling category ID
+                productTypeSelect.val('type_selling');
+            }
+            
+            // Trigger the product type change event to handle price field
+            productTypeSelect.trigger('change');
+        });
+
+        // Keep existing product type change handler
         $('select[name="product_type"]').on('change', function () {
             const isDonation = $(this).val() === 'type_dontion';
             const priceField = $('input[name="price"]');
             priceField.prop('readonly', isDonation).val(isDonation ? 0 : '');
         });
+
+        // Trigger initial change if category is already selected
+        if($('#main-category').val()) {
+            $('#main-category').trigger('change');
+        }
 
     });
 </script>
