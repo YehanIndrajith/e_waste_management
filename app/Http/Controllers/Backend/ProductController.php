@@ -67,7 +67,7 @@ class ProductController extends Controller
         $product->brand_id = $request->brand_id ?? null; // Optional field
         $product->qty = $request->qty;
         $product->short_description = $request->short_description;
-        $product->long_description = $request->long_description;
+        $product->long_description = strip_tags($request->long_description);
         $product->video_link = $request->video_link ?? null; // Optional field
         $product->sku = $request->sku ?? null; // Optional field
         $product->price = $request->price;
@@ -135,7 +135,7 @@ class ProductController extends Controller
         $product->brand_id = $request->brand_id ?? null; // Optional field
         $product->qty = $request->qty;
         $product->short_description = $request->short_description;
-        $product->long_description = $request->long_description;
+        $product->long_description = strip_tags($request->long_description);
         $product->video_link = $request->video_link ?? null; // Optional field
         $product->sku = $request->sku ?? null; // Optional field
         $product->price = $request->price;

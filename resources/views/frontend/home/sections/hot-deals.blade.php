@@ -123,10 +123,10 @@
                                         preg_match('/Score: ([\d.]+)/', $scoreString, $matches);
                                         $score = isset($matches[1]) ? floatval($matches[1]) : 0;
 
-                                        if ($score >= 61) {
+                                        if ($score >= 6) {
                                             $badgeColor = '#28a745';
                                             $badgeName = 'High';
-                                        } elseif ($score >= 31) {
+                                        } elseif ($score >= 3) {
                                             $badgeColor = '#ffc107';
                                             $badgeName = 'Medium';
                                         } else {

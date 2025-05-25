@@ -162,7 +162,7 @@
                                 
                             </ul>
                             
-                            <p class="brand_model"><span></span> {{$product->short_description}}</p>
+                            <div class="brand_model"><span></span> {{$product->short_description}}</div>
                            
                         </div>
                     </div>
@@ -225,13 +225,12 @@
                                         <div class="col-xl-12">
                                             <div class="wsus__description_area">
                                                 <h1>Heading</h1>
-                                                <p>
+
                                                     {{ $product->short_description }}
  
                                                     <br>
 
                                                     {{ $product->long_description }}
-                                                </p>
 
                                                 
                                                 
